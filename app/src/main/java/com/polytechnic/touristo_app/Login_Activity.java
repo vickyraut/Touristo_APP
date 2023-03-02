@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -24,8 +21,6 @@ import com.polytechnic.touristo_app.Constants.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -103,7 +98,7 @@ public class Login_Activity extends AppCompatActivity {
 
                     if (issuccess.equals("1")) {
                         Toast.makeText(Login_Activity.this, "Login Successfully Done", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
+                        Intent intent = new Intent(Login_Activity.this, Home.class);
                         startActivity(intent);
                         finish();
                     } else {

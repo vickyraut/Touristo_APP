@@ -5,37 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="@string/app_name"
-    tools:context=".Home_Activity">
-
-    <FrameLayout
-        android:id="@+id/home_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".Home">
 
 
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/home_bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:contentDescription="@string/app_name"
-        app:backgroundColor="@color/black"
-        app:iconSize="24dp"
-        app:iconTint="@color/white"
-        app:iconTintActive="@color/white"
-        app:indicatorColor="@color/design_default_color_secondary"
-        app:indicatorRadius="25dp"
-        app:itemFontFamily="@font/aladin"
-        app:itemPadding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navmenu"
-        app:sideMargins="10dp"
-        app:textColor="@color/white"
-        android:layout_margin="5dp"
-        app:corners="all"
-        app:cornerRadius="15dp"
-        app:textSize="14sp" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -76,7 +48,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_loc" />
+                        app:srcCompat="@drawable/ic_loc"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/textView"

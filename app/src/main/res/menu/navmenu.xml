@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<item
-    android:id="@+id/first_fragment"
-    android:title="Home"
-    android:icon="@drawable/dashboard_24"/>
+    <item
+        android:id="@+id/HomeFragment"
+        android:title="Home"
+        android:icon="@drawable/dashboard_24"/>
 
     <item
-        android:id="@+id/second_fragment"
+        android:id="@+id/ExploreFragment"
         android:title="Explore"
-        android:icon="@drawable/leaderboard_24" />
+        android:icon="@drawable/leaderboard_24"/>
 
     <item
-        android:id="@+id/third_fragment"
+        android:id="@+id/LikedFragment"
         android:title="Liked"
-        android:icon="@drawable/store_24" />
+        android:icon="@drawable/store_24"/>
 
     <item
-        android:id="@+id/fourth_fragment"
+        android:id="@+id/ProfileFragment"
         android:title="profile"
-        android:icon="@drawable/ic_baseline_person_24" />
+        android:icon="@drawable/profile_24"/>
 
 </menu>

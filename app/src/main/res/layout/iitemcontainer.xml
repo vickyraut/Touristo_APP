@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/star_rating"
         android:gravity="center_vertical"
@@ -55,15 +55,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/textTitle"/>
 
-    <ImageView
-    android:id="@+id/img_location"
-    android:layout_width="22dp"
-    android:layout_height="22dp"
-    android:layout_marginStart="20dp"
-    android:src="@drawable/ic_baseline_location_on_24"
-        app:layout_constraintBottom_toBottomOf="@id/txt_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_location" />
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintBottom_toBottomOf="@id/txt_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txt_location"
+            tools:ignore="ImageContrastCheck" />
     <TextView
         android:id="@+id/txt_location"
         android:layout_width="0dp"
