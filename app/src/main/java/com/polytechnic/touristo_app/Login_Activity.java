@@ -2,10 +2,14 @@ package com.polytechnic.touristo_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +33,7 @@ public class Login_Activity extends AppCompatActivity {
     Button b2;
     ImageView img_back;
     TextView tv_signUp;
+    boolean passwordVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,39 @@ public class Login_Activity extends AppCompatActivity {
                 }
             }
 
+        });
+
+        et_password.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    if (event.getRawX()>=et_password.getRight()-et_password.getCompoundDrawables()[Right].getBounds().width()){
+                        int selection=et_password.getSelectionEnd();
+
+                        if (passwordVisible) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_off_24,0);
+                            }
+                            et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordVisible = false;
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_24,0);
+                            }
+                            et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordVisible = true;
+
+                        }
+
+                        et_password.setSelection(selection);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         });
 
         tv_signUp.setOnClickListener(new View.OnClickListener() {

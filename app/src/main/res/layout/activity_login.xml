@@ -164,7 +164,7 @@
             android:drawableRight="@drawable/ic_round_remove_red_eye_24"
             android:hint="Password"
             android:textColor="@color/black"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColorHint="#A804040B"
             android:padding="18dp"
             app:layout_constraintEnd_toEndOf="parent"
