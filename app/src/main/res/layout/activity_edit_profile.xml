@@ -10,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/edt_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            app:cardElevation="30dp"
-            app:cardCornerRadius="25dp">
+            app:cardCornerRadius="25dp"
+            app:cardElevation="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,9 +35,9 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/poppins"
                     android:text="Your Details"
-                    android:textStyle="bold"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edt_et_first"
@@ -53,7 +53,7 @@
                     android:hint="First"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:textColorHint="#706D6D"/>
+                    android:textColorHint="#706D6D" />
 
                 <EditText
                     android:id="@+id/edt_et_last"
@@ -69,7 +69,7 @@
                     android:hint="Last"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:textColorHint="#706D6D"/>
+                    android:textColorHint="#706D6D" />
 
                 <EditText
                     android:id="@+id/edt_et_email"
@@ -85,7 +85,7 @@
                     android:hint="Email"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:textColorHint="#706D6D"/>
+                    android:textColorHint="#706D6D" />
 
                 <EditText
                     android:id="@+id/edt_et_pass"
@@ -96,13 +96,13 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/edittext_bg"
                     android:gravity="start"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:padding="10dp"
-                    android:textColorHint="#706D6D"
-                    android:layout_marginBottom="20dp"/>
+                    android:textColorHint="#706D6D" />
 
             </LinearLayout>
 
@@ -112,10 +112,10 @@
             android:id="@+id/edt_card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="30dp"
-            app:cardMaxElevation="25dp"
+            android:layout_margin="25dp"
             app:cardCornerRadius="25dp"
-            android:layout_margin="25dp">
+            app:cardElevation="30dp"
+            app:cardMaxElevation="25dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,9 +130,9 @@
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/poppins"
                     android:text="Address"
-                    android:textStyle="bold"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edt_et_Address"
@@ -143,31 +143,31 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/edittext_bg"
                     android:gravity="start"
                     android:hint="Address"
                     android:inputType="text"
                     android:padding="10dp"
-                    android:textColorHint="#706D6D"
-                    android:layout_marginBottom="20dp"/>
+                    android:textColorHint="#706D6D" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_save"
+            android:layout_gravity="right"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edittext_bg"
+            android:backgroundTint="@color/teal_200"
+            android:padding="15dp"
             android:text="SAVE"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:padding="15dp"
-            android:background="@drawable/edittext_bg"
-            android:backgroundTint="@color/teal_200"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="35dp"
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
