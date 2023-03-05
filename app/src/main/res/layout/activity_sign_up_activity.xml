@@ -39,11 +39,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:background="@drawable/card_bg"
+        app:layout_constraintTop_toBottomOf="@+id/SignUp_tv_logIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <TextView
             android:id="@+id/signup_tv_signup_large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:fontFamily="@font/arbutus_slab"
             android:gravity="center"
             android:paddingLeft="15dp"
@@ -161,7 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edittext_background"
             android:drawableRight="@drawable/ic_baseline_person_24"
@@ -216,7 +227,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="35dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/edittext_background"
             android:backgroundTint="@color/teal_700"
             android:padding="18dp"
@@ -226,6 +237,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUp_et_password" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -234,7 +246,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:layout_marginTop="100dp"
-            app:layout_constraintTop_toBottomOf="@+id/signUp_btn_done"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
