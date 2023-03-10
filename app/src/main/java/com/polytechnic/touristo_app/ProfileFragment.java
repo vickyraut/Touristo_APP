@@ -33,12 +33,12 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        EditText homg_et_name = view.findViewById(R.id.homg_et_name);
-        EditText homg_et_email = view.findViewById(R.id.homg_et_email);
-        EditText homg_et_Pass = view.findViewById(R.id.homg_et_Pass);
-        EditText homg_et_update_Address = view.findViewById(R.id.homg_et_update_Address);
-        EditText homg_et_update_noti = view.findViewById(R.id.homg_et_update_noti);
-        EditText homg_et_update_payment = view.findViewById(R.id.homg_et_update_payment);
+        TextView homg_et_name = view.findViewById(R.id.homg_et_name);
+        TextView homg_et_email = view.findViewById(R.id.homg_et_email);
+        TextView homg_et_Pass = view.findViewById(R.id.homg_et_Pass);
+        TextView homg_et_update_Address = view.findViewById(R.id.homg_et_update_Address);
+        TextView homg_et_update_noti = view.findViewById(R.id.homg_et_update_noti);
+        TextView homg_et_update_payment = view.findViewById(R.id.homg_et_update_payment);
 
 
         ConstraintLayout Cl_your_details = view.findViewById(R.id.Cl_your_details);
