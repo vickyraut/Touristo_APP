@@ -1,14 +1,13 @@
 package com.polytechnic.touristo_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.loopj.android.http.*;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -19,6 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
 
 import org.json.JSONException;
@@ -51,15 +55,34 @@ public class SignUP_Activity extends AppCompatActivity {
         tv_logIn = findViewById(R.id.SignUp_tv_logIn);
         img_back = findViewById(R.id.signup_back);
 
-
-        btn_signin.setOnClickListener(new View.OnClickListener() {
+        et_email.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                btn_signin.setClickable(false);
                 if (et_email.getText().toString().isEmpty()) {
                     et_email.setError("Please Enter Your Email");
                 } else if (!et_email.getText().toString().contains("@") || !et_email.getText().toString().contains(".com")) {
                     et_email.setError("Please Enter valid Email Address");
-                } else if (et_firstname.getText().toString().isEmpty()) {
+                } else {
+                    checkUserAvailibily();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        btn_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (et_firstname.getText().toString().isEmpty()) {
                     et_firstname.setError("Please Enter Your firstname");
                 } else if (et_lastname.getText().toString().isEmpty()) {
                     et_lastname.setError("Please Enter Your lastname");
@@ -124,6 +147,42 @@ public class SignUP_Activity extends AppCompatActivity {
 
     }
 
+    private void checkUserAvailibily() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("email", et_email.getText().toString());
+
+        client.post(Urls.urlCheckUser, params, new JsonHttpResponseHandler() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+
+                try {
+                    String isSuccess = response.getString("success");
+
+                    if (isSuccess.equals("1")) {
+                        et_email.setError("Username is Already taken");
+
+                    } else {
+                        Drawable drawable = getResources().getDrawable(R.drawable.edittext_background2);
+                        et_email.setBackground(drawable);
+                        btn_signin.setClickable(true);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void addUserDetails() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -134,6 +193,7 @@ public class SignUP_Activity extends AppCompatActivity {
         params.put("password", et_password.getText().toString());
 
         client.post(Urls.urlRegisterUser, params, new JsonHttpResponseHandler() {
+
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);

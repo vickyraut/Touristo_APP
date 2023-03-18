@@ -390,7 +390,7 @@
                             android:layout_marginRight="24dp"
                             android:background="@drawable/edittext_bg"
                             android:gravity="start"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:hint="Change Address"
                             android:inputType="textEmailAddress"
                             android:padding="10dp"

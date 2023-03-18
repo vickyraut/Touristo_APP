@@ -79,13 +79,13 @@ public class Login_Activity extends AppCompatActivity {
 
                         if (passwordVisible) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_off_24,0);
+                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_24,0);
                             }
                             et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                             passwordVisible = false;
                         } else {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_24,0);
+                                et_password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_off_24,0);
                             }
                             et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                             passwordVisible = true;
