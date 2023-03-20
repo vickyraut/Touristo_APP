@@ -7,4 +7,5 @@ public class Urls {
     public static final String urlLoginUser = OnlineAddress + "loginUser.php";
 
     public static final String urlCheckUser = OnlineAddress + "checkUser.php";
+    public  static final String urlgetMyDetails = OnlineAddress + "getMyDetails.php";
 }

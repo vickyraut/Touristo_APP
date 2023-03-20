@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -21,6 +24,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
+import com.polytechnic.touristo_app.models.LoadingDialog;
 
 
 import org.json.JSONException;
@@ -35,6 +39,11 @@ public class Login_Activity extends AppCompatActivity {
     TextView tv_signUp;
     boolean passwordVisible;
 
+    final LoadingDialog loadingDialog = new LoadingDialog(Login_Activity.this);
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +52,9 @@ public class Login_Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
 
         et_email = findViewById(R.id.LogIn_et_email);
         et_password = findViewById(R.id.LogIn_et_password);
@@ -62,6 +74,7 @@ public class Login_Activity extends AppCompatActivity {
                 } else if (et_password.getText().toString().length() < 8) {
                     et_password.setError("Password must contains at least 8 Characters");
                 } else {
+                    loadingDialog.startLoadingDialog();
                     checkUserlogin();
                 }
             }
@@ -135,11 +148,14 @@ public class Login_Activity extends AppCompatActivity {
                     String issuccess = response.getString("success");
 
                     if (issuccess.equals("1")) {
+                        loadingDialog.dismissDialog();
                         Toast.makeText(Login_Activity.this, "Login Successfully Done", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login_Activity.this, Home.class);
                         startActivity(intent);
                         finish();
+                        editor.putString("email",et_email.getText().toString()).commit();
                     } else {
+                        loadingDialog.dismissDialog();
                         Toast.makeText(Login_Activity.this, "Invalid Data", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -151,7 +167,8 @@ public class Login_Activity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
 
-                Toast.makeText(Login_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                loadingDialog.dismissDialog();
+                Toast.makeText(Login_Activity.this, "Server Error, Please try again later...", Toast.LENGTH_SHORT).show();
             }
         });
     }

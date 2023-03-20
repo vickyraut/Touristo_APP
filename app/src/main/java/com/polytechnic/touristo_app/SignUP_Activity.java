@@ -24,6 +24,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
+import com.polytechnic.touristo_app.models.LoadingDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,8 @@ public class SignUP_Activity extends AppCompatActivity {
     ImageView img_back;
     EditText et_email, et_firstname, et_lastname, et_password;
     boolean passwordVisible;
+
+    LoadingDialog loadingDialog = new LoadingDialog(SignUP_Activity.this);
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -91,6 +94,7 @@ public class SignUP_Activity extends AppCompatActivity {
                 } else if (et_password.getText().toString().length() < 8) {
                     et_password.setError("Password must contains at least 8 Characters");
                 } else {
+                    loadingDialog.startLoadingDialog();
                     addUserDetails();
                 }
             }
@@ -205,11 +209,13 @@ public class SignUP_Activity extends AppCompatActivity {
                                 String isSuccess = response.getString("success");
 
                                 if (isSuccess.equals("1")) {
+                                    loadingDialog.dismissDialog();
                                     Toast.makeText(getApplicationContext(), "Registration Successfully Done", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignUP_Activity.this, Login_Activity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
+                                    loadingDialog.dismissDialog();
                                     Toast.makeText(SignUP_Activity.this, "Invalid Data", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
@@ -222,7 +228,7 @@ public class SignUP_Activity extends AppCompatActivity {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
-                        Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismissDialog();                        Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
