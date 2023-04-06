@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
                 <ImageView
                     android:id="@+id/img_place"
                     android:layout_width="match_parent"
@@ -78,7 +77,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_location"
-            app:srcCompat="@drawable/icon_loc_pin"
+            app:srcCompat="@drawable/ic_baseline_location_on_24"
             tools:ignore="UseAppTint" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

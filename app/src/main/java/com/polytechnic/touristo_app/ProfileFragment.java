@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
@@ -25,12 +23,14 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileFragment extends Fragment {
@@ -41,6 +41,7 @@ public class ProfileFragment extends Fragment {
     TextView homg_tv_update_noti;
     TextView homg_tv_update_payment;
     TextView home_tv_large_Name, home_tv_large_Email;
+    CircleImageView img_profile;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -67,6 +68,7 @@ public class ProfileFragment extends Fragment {
         homg_tv_update_noti = view.findViewById(R.id.homg_tv_update_noti);
         home_tv_large_Name = view.findViewById(R.id.textView4);
         home_tv_large_Email = view.findViewById(R.id.textView6);
+        img_profile = view.findViewById(R.id.profimage);
 
 
         ConstraintLayout Cl_your_details = view.findViewById(R.id.Cl_your_details);
@@ -160,16 +162,22 @@ public class ProfileFragment extends Fragment {
                         id = jsonObject.getString("id");
                         String firstname = jsonObject.getString("firstname");
                         String lastname = jsonObject.getString("lastname");
+                        String image_name = jsonObject.getString("myimage");
                         Email = jsonObject.getString("email");
 
                         Name = firstname + " " + lastname;
 
-                        editor.putString("id",id).commit();
+                        editor.putString("id", id).commit();
 
                         homg_tv_name.setText(Name);
                         homg_tv_email.setText(Email);
                         home_tv_large_Name.setText(Name);
                         home_tv_large_Email.setText(Email);
+
+                        Picasso.get()
+                                .load(Urls.UserImageAddress + image_name)
+                                .error(R.drawable.default_profile)
+                                .into(img_profile);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

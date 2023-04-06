@@ -37,8 +37,8 @@ public class SignUP_Activity extends AppCompatActivity {
     ImageView img_back;
     EditText et_email, et_firstname, et_lastname, et_password;
     boolean passwordVisible;
-
     LoadingDialog loadingDialog = new LoadingDialog(SignUP_Activity.this);
+    private String first_name, last_name, email, password;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -85,13 +85,23 @@ public class SignUP_Activity extends AppCompatActivity {
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (et_firstname.getText().toString().isEmpty()) {
+                //To delete all the spaces from String
+                first_name = (et_firstname.getText().toString().trim());
+                last_name = (et_lastname.getText().toString().trim());
+                email = (et_email.getText().toString().trim());
+                password = (et_password.getText().toString().trim());
+
+                if (first_name.isEmpty()) {
                     et_firstname.setError("Please Enter Your firstname");
-                } else if (et_lastname.getText().toString().isEmpty()) {
+                } else if (last_name.isEmpty()) {
                     et_lastname.setError("Please Enter Your lastname");
-                } else if (et_password.getText().toString().isEmpty()) {
+                } else if (email.isEmpty()) {
+                    et_email.setError("Please Enter Email");
+                } else if (!email.contains("@") || !email.contains(".com")) {
+                    et_email.setError("Please Enter valid Email Address");
+                } else if (password.isEmpty()) {
                     et_password.setError("Please Enter Your Password");
-                } else if (et_password.getText().toString().length() < 8) {
+                } else if (password.length() < 8) {
                     et_password.setError("Password must contains at least 8 Characters");
                 } else {
                     loadingDialog.startLoadingDialog();
@@ -191,10 +201,10 @@ public class SignUP_Activity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        params.put("email", et_email.getText().toString());
-        params.put("firstname", et_firstname.getText().toString());
-        params.put("lastname", et_lastname.getText().toString());
-        params.put("password", et_password.getText().toString());
+        params.put("email", email);
+        params.put("firstname", first_name);
+        params.put("lastname", last_name);
+        params.put("password", password);
 
         client.post(Urls.urlRegisterUser, params, new JsonHttpResponseHandler() {
 
@@ -228,7 +238,8 @@ public class SignUP_Activity extends AppCompatActivity {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
-                        loadingDialog.dismissDialog();                        Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismissDialog();
+                        Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

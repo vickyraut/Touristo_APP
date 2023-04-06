@@ -22,7 +22,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="35dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/edittext_background"
+        android:background="@drawable/card_bg"
         android:backgroundTint="@color/teal_700"
         android:padding="10dp"
         android:text="Get Start >>"

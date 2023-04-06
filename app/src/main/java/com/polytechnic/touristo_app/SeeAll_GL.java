@@ -38,7 +38,7 @@ public class SeeAll_GL extends AppCompatActivity {
         seeAll_glAdapter seeAllAdapter = new seeAll_glAdapter(GridList1 ,SeeAll_GL.this);
         Rv_gl.setAdapter(seeAllAdapter);
 
-        LinearLayoutManager SeeAllManager = new LinearLayoutManager(SeeAll_GL.this,LinearLayoutManager.VERTICAL,true);
+        LinearLayoutManager SeeAllManager = new LinearLayoutManager(SeeAll_GL.this,LinearLayoutManager.VERTICAL,false);
         Rv_gl.setLayoutManager(SeeAllManager);
 
 

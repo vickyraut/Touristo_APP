@@ -10,20 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import  com.polytechnic.touristo_app.R;
-import  com.polytechnic.touristo_app.models.rec_for_you_model;
+import com.polytechnic.touristo_app.Constants.Urls;
+import com.polytechnic.touristo_app.R;
+import com.polytechnic.touristo_app.models.rec_for_you_model;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class rec_foryou_adapter extends RecyclerView.Adapter<rec_foryou_adapter.viewholder> {
 
-    ArrayList<rec_for_you_model> list;
+    ArrayList<rec_for_you_model> forYouModels;
 
     Context con;
 
 
     public rec_foryou_adapter(ArrayList<rec_for_you_model> list, Context con) {
-        this.list = list;
+        this.forYouModels = list;
         this.con = con;
     }
 
@@ -31,41 +33,39 @@ public class rec_foryou_adapter extends RecyclerView.Adapter<rec_foryou_adapter.
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(con).inflate(R.layout.home_sliding_cards,parent,false);
+        View view = LayoutInflater.from(con).inflate(R.layout.home_sliding_cards, parent, false);
         return new viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        rec_for_you_model v = list.get(position);
-        holder.i.setImageResource(v.getImg_place());
-        holder.i2.setImageResource(v.getImg_loc());
-        holder.t1.setText(v.getTv_location());
-        holder.t2.setText(v.getTv_place_name());
+        rec_for_you_model v = forYouModels.get(position);
+        holder.loc_name.setText(v.getName());
+        holder.loc_city.setText(v.getCity());
 
+        Picasso.get()
+                .load(Urls.TouristImageAddress + v.getImage())
+                .error(R.drawable.reg_bg)
+                .into(holder.loc_image);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return forYouModels.size();
     }
 
     public static class viewholder extends RecyclerView.ViewHolder {
         //calls freg
-        ImageView i,i2;
-        TextView t1,t2;
+        ImageView loc_image;
+        TextView loc_name, loc_city;
 
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
             //calls freg
-            i= itemView.findViewById(R.id.img_place);
-            i2= itemView.findViewById(R.id.img_loc);
-
-            t1=itemView.findViewById(R.id.tv_place_name);
-            t2=itemView.findViewById(R.id.tv_location);
-
-
+            loc_image = itemView.findViewById(R.id.img_place);
+            loc_name = itemView.findViewById(R.id.tv_place_name);
+            loc_city = itemView.findViewById(R.id.tv_location);
 
         }
 
