@@ -1,4 +1,4 @@
-package com.polytechnic.touristo_app;
+package com.polytechnic.touristo_app.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flaviofaria.kenburnsview.KenBurnsView;
+import com.polytechnic.touristo_app.R;
+import com.polytechnic.touristo_app.models.TravelLoacation;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

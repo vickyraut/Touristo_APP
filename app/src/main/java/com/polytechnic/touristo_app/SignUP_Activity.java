@@ -24,7 +24,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
-import com.polytechnic.touristo_app.models.LoadingDialog;
+import com.polytechnic.touristo_app.Dialog.LoadingDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -239,7 +239,7 @@ public class SignUP_Activity extends AppCompatActivity {
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
                         loadingDialog.dismissDialog();
-                        Toast.makeText(SignUP_Activity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUP_Activity.this, "Server Error, Please try again later...", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

@@ -29,7 +29,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:background="@drawable/pic1"
+                android:background="@drawable/cardbackground"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,6 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+
                 app:layout_constraintTop_toBottomOf="@id/cardView2">
 
                 <RelativeLayout
@@ -202,48 +203,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="217dp"
                         android:layout_below="@+id/constraintLayout2"
-
                         tools:listitem="@layout/home_sliding_cards" />
-
-
-                    <TextView
-                        android:id="@+id/tv_stories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/rec_foryou"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Stories"
-                        android:textColor="@color/black"
-                        android:textSize="27dp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout_forypu"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_below="@+id/tv_stories"
-                        android:orientation="horizontal"
-
-
-                        >
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rec_stories"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@string/app_name"
-                            tools:listitem="@layout/story_frag" />
-
-                    </LinearLayout>
 
 
                     <TextView
                         android:id="@+id/tv_hot_places"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/linearLayout_forypu"
+                        android:layout_below="@+id/rec_foryou"
                         android:layout_alignParentLeft="true"
 
                         android:layout_marginStart="16dp"
@@ -258,7 +225,7 @@
                         android:id="@+id/tv_see_all_hot"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/linearLayout_forypu"
+                        android:layout_below="@+id/rec_foryou"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
@@ -270,14 +237,25 @@
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/Vp_hotPlaces"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="400dp"
                         android:layout_below="@+id/tv_hot_places"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginBottom="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="40dp"
+                        android:paddingStart="60dp"
+                        android:paddingEnd="60dp"
                         tools:ignore="MissingConstraints" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/home_rec_tourist_places"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/home_tourist_recv"
+                        android:layout_below="@id/Vp_hotPlaces"
+                        android:layout_alignParentBottom="true">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
                 </RelativeLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

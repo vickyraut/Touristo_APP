@@ -61,11 +61,11 @@ public class ProfileFragment extends Fragment {
 
         login_email = preferences.getString("email", "");
 
-        homg_tv_name = view.findViewById(R.id.homg_tv_name);
-        homg_tv_email = view.findViewById(R.id.homg_tv_email);
-        homg_tv_update_payment = view.findViewById(R.id.homg_tv_update_payment);
-        homg_tv_update_Address = view.findViewById(R.id.homg_tv_update_Address);
-        homg_tv_update_noti = view.findViewById(R.id.homg_tv_update_noti);
+        homg_tv_name = view.findViewById(R.id.homg_et_name);
+        homg_tv_email = view.findViewById(R.id.homg_et_email);
+        homg_tv_update_payment = view.findViewById(R.id.homg_et_update_payment);
+        homg_tv_update_Address = view.findViewById(R.id.homg_et_update_Address);
+        homg_tv_update_noti = view.findViewById(R.id.homg_et_update_noti);
         home_tv_large_Name = view.findViewById(R.id.textView4);
         home_tv_large_Email = view.findViewById(R.id.textView6);
         img_profile = view.findViewById(R.id.profimage);
@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
         ConstraintLayout Cl_notification = view.findViewById(R.id.Cl_notification);
         ConstraintLayout cl_paymentDetails = view.findViewById(R.id.cl_paymentDetails);
 
-        TextView tv_edit = view.findViewById(R.id.textView20);
+        TextView tv_edit = view.findViewById(R.id.tv_edit);
         ImageView upload_img = view.findViewById(R.id.imageView13);
         CardView cv_your_details = view.findViewById(R.id.Cv_yourdetails);
 

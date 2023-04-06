@@ -61,6 +61,7 @@ public class Welcome_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login_Activity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

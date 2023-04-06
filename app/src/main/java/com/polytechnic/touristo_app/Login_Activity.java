@@ -23,7 +23,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
-import com.polytechnic.touristo_app.models.LoadingDialog;
+import com.polytechnic.touristo_app.Dialog.LoadingDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +66,9 @@ public class Login_Activity extends AppCompatActivity {
                 email = et_email.getText().toString().trim();
                 password = et_password.getText().toString().trim();
 
+                //God Mode Login
                 if (email.equals("Vicky") && password.equals("Vicky")) {
+                    loadingDialog.startLoadingDialog();
                     checkUserlogin();
                 } else if (email.isEmpty()) {
                     et_email.setError("Please Enter Email");
@@ -149,7 +151,6 @@ public class Login_Activity extends AppCompatActivity {
 
                 try {
                     String issuccess = response.getString("success");
-
                     if (issuccess.equals("1")) {
                         loadingDialog.dismissDialog();
                         Toast.makeText(Login_Activity.this, "Login Successfully Done", Toast.LENGTH_SHORT).show();
