@@ -68,7 +68,7 @@ public class ExploreFragment extends Fragment {
                         String name = jsonObject.getString("name");
                         String image = jsonObject.getString("image");
                         int price = jsonObject.getInt("price");
-                        int days = jsonObject.getInt("days");
+                        String days = jsonObject.getString("days");
 
                         exp_models.add(new Exp_Model(image, name, price, days));
                     }

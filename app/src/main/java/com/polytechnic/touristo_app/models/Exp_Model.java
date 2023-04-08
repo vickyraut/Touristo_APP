@@ -3,13 +3,16 @@ package com.polytechnic.touristo_app.models;
 public class Exp_Model {
     String Image;
     String name;
-    int price,days;
 
-    public Exp_Model(String image, String name, int price, int days) {
+    int price;
+
+    String days;
+
+    public Exp_Model(String image, String name, int price, String days) {
         Image = image;
         this.name = name;
-        this.price = price;
         this.days = days;
+        this.price = price;
     }
 
     public String getImage() {
@@ -36,11 +39,11 @@ public class Exp_Model {
         this.price = price;
     }
 
-    public int getDays() {
+    public String getDays() {
         return days;
     }
 
-    public void setDays(int days) {
+    public void setDays(String days) {
         this.days = days;
     }
 }
