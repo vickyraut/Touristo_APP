@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polytechnic.touristo_app.Constants.Urls;
@@ -62,6 +65,7 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
         //calls freg
         ImageView i,i2;
         TextView t1,t2;
+        CardView cardView;
 
 
         public viewholder(@NonNull View itemView) {
@@ -70,6 +74,8 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
             i= itemView.findViewById(R.id.cv_hotels_img);
             t1=itemView.findViewById(R.id.tv_hotel_name);
             t2=itemView.findViewById(R.id.tv_likesCount);
+            cardView = itemView.findViewById(R.id.home_touristo_cardView);
+
         }
 
 

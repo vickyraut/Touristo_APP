@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_cardView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        android:background="@drawable/searchview_bg">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/search_locationName"
+            android:text="location_name"
+            android:textSize="20dp"
+            android:fontFamily="@font/alike_angular"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="start|center_vertical"
+            android:drawableTint="#3B3A3A"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
+            android:drawablePadding="10dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

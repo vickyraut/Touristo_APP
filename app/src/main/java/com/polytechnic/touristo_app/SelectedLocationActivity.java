@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.polytechnic.touristo_app.Constants.Urls;
 import com.squareup.picasso.Picasso;
 

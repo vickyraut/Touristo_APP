@@ -1,15 +1,14 @@
 package com.polytechnic.touristo_app;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -41,10 +40,10 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_explore, container, false);
+        View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         explore_topTours_recyclerView = view.findViewById(R.id.exp_recview);
-        explore_topTours_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        explore_topTours_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         exp_models = new ArrayList<>();
 
@@ -53,17 +52,17 @@ public class ExploreFragment extends Fragment {
     }
 
     private void getTop_TouristPlaces() {
-        AsyncHttpClient client =new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        client.post(Urls.urlgetTop_TouristPlaces,params,new JsonHttpResponseHandler(){
+        client.post(Urls.urlgetTop_TouristPlaces, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 try {
-                    JSONArray jsonArray =  response.getJSONArray("getTouristPlaces");
+                    JSONArray jsonArray = response.getJSONArray("getTouristPlaces");
 
-                    for (int i =0; i<jsonArray.length(); i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String name = jsonObject.getString("name");
                         String image = jsonObject.getString("image");
@@ -72,6 +71,7 @@ public class ExploreFragment extends Fragment {
 
                         exp_models.add(new Exp_Model(image, name, price, days));
                     }
+
                     explore_adapter = new Explore_adapter(exp_models, getContext());
                     explore_topTours_recyclerView.setAdapter(explore_adapter);
 

@@ -71,6 +71,8 @@ public class ProfileFragment extends Fragment {
         img_profile = view.findViewById(R.id.profimage);
 
 
+
+
         ConstraintLayout Cl_your_details = view.findViewById(R.id.Cl_your_details);
         ConstraintLayout Cl_manage_add = view.findViewById(R.id.Cl_manage_add);
         ConstraintLayout Cl_notification = view.findViewById(R.id.Cl_notification);

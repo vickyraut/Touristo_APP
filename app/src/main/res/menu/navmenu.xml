@@ -8,13 +8,13 @@
 
     <item
         android:id="@+id/ExploreFragment"
-        android:title="Explore"
+        android:title="Trending"
         android:icon="@drawable/leaderboard_24"/>
 
     <item
         android:id="@+id/LikedFragment"
-        android:title="Liked"
-        android:icon="@drawable/store_24"/>
+        android:title="Explore"
+        android:icon="@drawable/baseline_map_24"/>
 
     <item
         android:id="@+id/ProfileFragment"

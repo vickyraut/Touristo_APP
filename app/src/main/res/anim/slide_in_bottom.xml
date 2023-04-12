@@ -2,8 +2,8 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <translate
-        android:duration="@integer/material_motion_duration_short_1"
-        android:fromYDelta="100%p"
+        android:duration="400"
+        android:fromYDelta="28%p"
         android:toYDelta="0"/>
 
 </set>
