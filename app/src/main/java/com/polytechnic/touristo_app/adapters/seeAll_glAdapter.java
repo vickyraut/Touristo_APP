@@ -11,19 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.polytechnic.touristo_app.Constants.Urls;
 import  com.polytechnic.touristo_app.R;
-import  com.polytechnic.touristo_app.models.seeAll_model;
+import com.polytechnic.touristo_app.models.rec_for_you_model;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class seeAll_glAdapter extends RecyclerView.Adapter<seeAll_glAdapter.viewholder> {
 
-        ArrayList<seeAll_model> list;
+        ArrayList<rec_for_you_model> list;
 
         Context con;
 
 
-        public seeAll_glAdapter(ArrayList<seeAll_model> list, Context con) {
+        public seeAll_glAdapter(ArrayList<rec_for_you_model> list, Context con) {
             this.list = list;
             this.con = con;
         }
@@ -32,18 +34,23 @@ public class seeAll_glAdapter extends RecyclerView.Adapter<seeAll_glAdapter.view
         @NonNull
         @Override
         public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view= LayoutInflater.from(con).inflate(R.layout.seeall_gl_frag,parent,false);
+            View view= LayoutInflater.from(con).inflate(R.layout.see_all_recycler,parent,false);
             return new viewholder(view);
         }
 
         @Override
         public void onBindViewHolder(@NonNull viewholder holder, int position) {
-            seeAll_model v = list.get(position);
-            holder.i.setImageResource(v.getImg_place());
-            holder.i2.setImageResource(v.getImg_loc());
-            holder.t1.setText(v.getTv_location());
-            holder.t2.setText(v.getTv_place_name());
+            rec_for_you_model v = list.get(position);
 
+            holder.t1.setText(v.getName());
+            String price = "$" + String.valueOf(v.getPrice());
+            holder.t2.setText(price);
+            holder.t3.setText(v.getLike_count());
+
+            Picasso.get()
+                    .load(Urls.TouristImageAddress + v.getImage())
+                    .error(R.drawable.reg_bg)
+                    .into(holder.i);
         }
 
         @Override
@@ -53,25 +60,21 @@ public class seeAll_glAdapter extends RecyclerView.Adapter<seeAll_glAdapter.view
 
         public static class viewholder extends RecyclerView.ViewHolder {
             //calls freg
-            ImageView i,i2;
-            TextView t1,t2;
+            ImageView i;
+            TextView t1,t2,t3;
 
 
             public viewholder(@NonNull View itemView) {
                 super(itemView);
                 //calls freg
-                i= itemView.findViewById(R.id.img_place);
-                i2= itemView.findViewById(R.id.img_loc);
-
-                t1=itemView.findViewById(R.id.tv_place_name);
-                t2=itemView.findViewById(R.id.tv_location);
-
-
-
+                i= itemView.findViewById(R.id.cv_hotels_img);
+                t1= itemView.findViewById(R.id.location_name);
+                t2= itemView.findViewById(R.id.tv_price);
+                t3= itemView.findViewById(R.id.tv_likesCount);
             }
 
-
         }
+
     }
 
 

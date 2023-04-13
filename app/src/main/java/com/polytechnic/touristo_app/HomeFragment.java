@@ -1,11 +1,13 @@
 package com.polytechnic.touristo_app;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -196,8 +198,9 @@ public class HomeFragment extends Fragment {
                         String image = jsonObject.getString("image");
                         String city = jsonObject.getString("city");
                         String country = jsonObject.getString("country");
-
-                        for_you_models.add(new rec_for_you_model(id, name, image, city, country));
+                        String like_count = jsonObject.getString("likes");
+                        int price = jsonObject.getInt("price");
+                        for_you_models.add(new rec_for_you_model(id, name, image, city, country, like_count, price));
                     }
 
                     rec_foryou_adapter = new rec_foryou_adapter(for_you_models, getContext());

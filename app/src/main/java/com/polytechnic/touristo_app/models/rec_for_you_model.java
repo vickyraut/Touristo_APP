@@ -1,14 +1,17 @@
 package com.polytechnic.touristo_app.models;
 
 public class rec_for_you_model {
-    String id, name, image,city, country;
+    String id, name, image,city, country, like_count;
+    int price;
 
-    public rec_for_you_model(String id, String name, String image, String city, String country) {
+    public rec_for_you_model(String id, String name, String image, String city, String country, String like_count, int price) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.city = city;
         this.country = country;
+        this.like_count = like_count;
+        this.price = price;
     }
 
     public String getId() {
@@ -49,5 +52,21 @@ public class rec_for_you_model {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getLike_count() {
+        return like_count;
+    }
+
+    public void setLike_count(String like_count) {
+        this.like_count = like_count;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

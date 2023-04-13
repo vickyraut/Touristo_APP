@@ -1,9 +1,11 @@
 package com.polytechnic.touristo_app;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +36,10 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
+
 public class SearchFragment extends Fragment {
 
     SearchView searchView;
-    ExploreFragment exploreFragment;
     RecyclerView search_recycler;
     Search_adapter search_adapter;
     List<Exp_Model> exp_models = new ArrayList<>();

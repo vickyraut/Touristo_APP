@@ -28,7 +28,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:background="@drawable/cardbackground"
+                android:background="@drawable/img_3"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,9 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rec_foryou"
                         android:layout_width="match_parent"
-                        android:layout_height="217dp"
+                        android:layout_height="245dp"
+                        android:layout_marginTop="2dp"
+                        android:paddingTop="5dp"
                         android:layout_below="@+id/constraintLayout2"
                         tools:listitem="@layout/home_sliding_cards" />
 
@@ -231,6 +233,7 @@
                         android:paddingStart="60dp"
                         android:paddingEnd="60dp"
                         tools:ignore="MissingConstraints" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_rec_tourist_places"
                         android:layout_width="match_parent"

@@ -2,7 +2,10 @@ package com.polytechnic.touristo_app;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -14,10 +17,9 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class Home extends AppCompatActivity {
 
-    String ROOT_FRAGMENT_TAG;
-
-
+    boolean doubletap;
     private SmoothBottomBar smoothBottomBar;
+    SearchFragment searchFragment;
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -25,11 +27,6 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         replace(new HomeFragment());
-//        setupNavigationComponent();
-
-
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
 
         smoothBottomBar = findViewById(R.id.bottomBar);
 
@@ -60,8 +57,32 @@ public class Home extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.home_frame, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void onBackPressed() {
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragInstance = fm.findFragmentById(R.id.home_constraint);
+
+        if (fragInstance instanceof SearchFragment){
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.home_frame, new HomeFragment());
+            transaction.commit();
+        }
+        else if (doubletap) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "Press Again to Exit App", Toast.LENGTH_SHORT).show();
+            doubletap = true;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubletap = false;
+                }
+            }, 2000);
+        }
 
     }
 
