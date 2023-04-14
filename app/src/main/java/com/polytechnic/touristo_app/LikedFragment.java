@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.polytechnic.touristo_app.R;
+
 
 public class LikedFragment extends Fragment {
 

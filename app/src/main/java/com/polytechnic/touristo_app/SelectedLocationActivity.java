@@ -23,8 +23,8 @@ public class SelectedLocationActivity extends AppCompatActivity {
         setContentView(R.layout.selected_location);
 
         tv_locationName = findViewById(R.id.textView8);
-        tv_locationPrice = findViewById(R.id.textView14);
-        tv_locationDays = findViewById(R.id.textView15);
+        tv_locationPrice = findViewById(R.id.tv_visit);
+        tv_locationDays = findViewById(R.id.tv_open);
         img_location = findViewById(R.id.imageLoaction);
 
         String price = "$" + String.valueOf(getIntent().getIntExtra("price", 0));

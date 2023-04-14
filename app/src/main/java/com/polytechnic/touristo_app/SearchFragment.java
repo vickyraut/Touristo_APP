@@ -1,11 +1,8 @@
 package com.polytechnic.touristo_app;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +81,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.home_frame, new HomeFragment());
+                transaction.replace(R.id.container, new HomeFragment());
                 transaction.commit();
             }
         });
@@ -120,7 +117,7 @@ public class SearchFragment extends Fragment {
                 if (isEnabled()) {
                     assert getFragmentManager() != null;
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.home_frame, new HomeFragment());
+                    transaction.replace(R.id.container, new HomeFragment());
                     transaction.commit();
                     setEnabled(false);
                 }

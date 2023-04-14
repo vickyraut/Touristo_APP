@@ -14,6 +14,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.polytechnic.touristo_app.Constants.Urls;
+import com.polytechnic.touristo_app.R;
 import com.polytechnic.touristo_app.adapters.Explore_adapter;
 import com.polytechnic.touristo_app.models.Exp_Model;
 

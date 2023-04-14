@@ -52,4 +52,5 @@ dependencies {
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
+    implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
 }
