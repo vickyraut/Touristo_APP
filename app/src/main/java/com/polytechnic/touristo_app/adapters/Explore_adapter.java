@@ -2,6 +2,7 @@ package com.polytechnic.touristo_app.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,14 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
         holder.t2.setText(price);
         holder.t3.setText(" /" + v.getDays() + " Days");
 
-        Picasso.get()
-                .load(Urls.TouristImageAddress + v.getImage())
-                .error(R.drawable.reg_bg)
-                .into(holder.imageView);
+        if (v.getImage().isEmpty()){
+            holder.imageView.setImageResource(R.drawable.reg_bg);
+        }else {
+            Picasso.get()
+                    .load(v.getImage())
+                    .error(R.drawable.reg_bg)
+                    .into(holder.imageView);
+        }
 
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(),R.anim.anim1));
 
@@ -66,6 +71,8 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
                 intent.putExtra("image",temp.getImage());
                 intent.putExtra("price", temp.getPrice());
                 intent.putExtra("days",temp.getDays());
+                intent.putExtra("latitude",temp.getLatitude());
+                intent.putExtra("longitude",temp.getLongitude());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 con.startActivity(intent);
             }
@@ -79,7 +86,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
 
     public class ExpViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView t, t2, t3;
+        TextView t, t2, t3,t4;
 
         CardView cardView;
 

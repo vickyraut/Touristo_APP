@@ -42,7 +42,6 @@ public class ProfileFragment extends Fragment {
     TextView homg_tv_update_payment;
     TextView home_tv_large_Name, home_tv_large_Email;
     CircleImageView img_profile;
-
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String login_email;
@@ -71,7 +70,8 @@ public class ProfileFragment extends Fragment {
         img_profile = view.findViewById(R.id.profimage);
 
 
-
+        String address = preferences.getString("address", "Address");
+        homg_tv_update_Address.setText(address);
 
         ConstraintLayout Cl_your_details = view.findViewById(R.id.Cl_your_details);
         ConstraintLayout Cl_manage_add = view.findViewById(R.id.Cl_manage_add);

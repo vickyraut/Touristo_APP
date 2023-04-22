@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -8,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.polytechnic.touristo_app"
-        minSdk 16
+        minSdk 19
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -53,4 +54,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
     implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    // Utilities for Maps SDK for Android (requires Google Play Services)
+    implementation 'com.google.maps.android:android-maps-utils:3.4.0'
+
 }

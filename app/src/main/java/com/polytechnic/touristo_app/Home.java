@@ -1,17 +1,26 @@
 package com.polytechnic.touristo_app;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,10 +28,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -43,6 +60,14 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
     private SmoothBottomBar smoothBottomBar;
     private String[] screenTitles;
     private Drawable[] screenIcons;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    double latitude, longitude;
+    String address;
+    String city;
+    public final static int REQUEST_CODE = 100;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -50,10 +75,15 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
         replace(new HomeFragment());
+        getLastLocation();
 
         smoothBottomBar = findViewById(R.id.bottomBar);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(Home.this);
+        editor = preferences.edit();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         slidingRootNav = new SlidingRootNavBuilder(this)
@@ -102,7 +132,7 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
                         replace(new ExploreFragment());
                         break;
                     case 2:
-                        replace(new LikedFragment());
+                        replace(new MapFragment());
                         break;
                     case 3:
                         replace(new ProfileFragment());
@@ -156,8 +186,8 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
             ExploreFragment exploreFragment = new ExploreFragment();
             transaction.replace(R.id.container, exploreFragment);
         } else if (position == POS_EXPLORE) {
-            LikedFragment likedFragment = new LikedFragment();
-            transaction.replace(R.id.container, likedFragment);
+            MapFragment mapFragment = new MapFragment();
+            transaction.replace(R.id.container, mapFragment);
         } else if (position == POS_MY_PROFILE) {
             ProfileFragment profileFragment = new ProfileFragment();
             transaction.replace(R.id.container, profileFragment);
@@ -210,4 +240,66 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
     }
 
+    private void getLastLocation() {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                latitude = location.getLatitude();
+                                longitude = location.getLongitude();
+
+
+                                Executor executor = Executors.newSingleThreadExecutor();
+
+                                        Geocoder geocoder = new Geocoder(Home.this, Locale.getDefault());
+                                        List<Address> addressList = null;
+
+                                try {
+                                    addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+
+                                address = addressList.get(0).getAddressLine(0) + " " + addressList.get(0).getLocality() + " " +
+                                                addressList.get(0).getCountryName();
+
+                                        city = addressList.get(0).getLocality();
+
+
+
+                                // save Important data to sharedpreference
+                                editor.putFloat("latitude", (float) latitude).apply();
+                                editor.putString("city", city).apply();
+                                editor.putFloat("longitude", (float) longitude).apply();
+                                editor.putString("address",address).apply();
+                            }
+                        }
+                    });
+        } else {
+            askpermission();
+        }
+    }
+
+    private void askpermission() {
+        ActivityCompat.requestPermissions(Home.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+            } else {
+                Toast.makeText(this, "Please provide required permission", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

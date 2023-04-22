@@ -66,11 +66,18 @@ public class ExploreFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String name = jsonObject.getString("name");
-                        String image = jsonObject.getString("image");
-                        int price = jsonObject.getInt("price");
-                        String days = jsonObject.getString("days");
+                        String city  = jsonObject.getString("city");
+                        String country  = jsonObject.getString("country");
+                        String image  = jsonObject.getString("image");
+                        String description  = jsonObject.getString("description");
+                        String days  = jsonObject.getString("days");
+                        int price  = jsonObject.getInt("price");
+                        int likes  = jsonObject.getInt("likes");
+                        int rating  = jsonObject.getInt("rating");
+                        double latitude  = jsonObject.getDouble("latitude");
+                        double longitude  = jsonObject.getDouble("longitude");
 
-                        exp_models.add(new Exp_Model(image, name, price, days));
+                        exp_models.add(new Exp_Model(name,city,country,image, description,days,price,likes,rating,latitude,longitude));
                     }
 
                     explore_adapter = new Explore_adapter(exp_models, getContext());

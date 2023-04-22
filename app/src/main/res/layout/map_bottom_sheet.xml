@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/background_bottom_map">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_sheet_maptype"
+        android:textAlignment="center"
+        android:text="Map Type"
+        android:textSize="17dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif">
+
+    </TextView>
+
+    <View
+        android:layout_width="80dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:background="#000000" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_margin="0dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idLinNormalMap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/map_button"
+                android:orientation="vertical">
+
+                <!--button for displaying Normal map-->
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/idBtnNormalMap"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/map_button"
+                    android:src="@drawable/ic_default"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Default\n   Map "
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idLinSatelliteMap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/map_button"
+                android:orientation="vertical">
+
+                <!--button for displaying satellite map-->
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/idBtnSatelliteMap"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/map_button"
+                    android:src="@drawable/ic_satellite"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Satellite\n   Map"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idLinTerrainMap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/map_button"
+                android:orientation="vertical">
+
+                <!--button for displaying Terrain map-->
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/idBtnTerrainMap"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/map_button"
+                    android:src="@drawable/ic_terrain"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terrain\n   Map"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idLinHybridMap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/map_button"
+                android:orientation="vertical">
+
+                <!--button for displaying Terrain map-->
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/idBtnHybridMap"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/map_button"
+                    android:src="@drawable/hybrid_map"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hybrid\n  Map"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="#000000" />
+
+</LinearLayout>

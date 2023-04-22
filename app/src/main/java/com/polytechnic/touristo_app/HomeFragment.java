@@ -1,15 +1,24 @@
 package com.polytechnic.touristo_app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,6 +30,9 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -36,8 +48,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -48,10 +62,10 @@ public class HomeFragment extends Fragment {
     ArrayList<home_touristPlaces_model> touristPlaces_models;
     rec_foryou_adapter rec_foryou_adapter;
     home_tourist_adapter home_tourist_adapter;
-
     TextView searchview_text;
     CardView card_searchview;
-
+    ImageView img_myLocation;
+    TextView tv_mylocation;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -73,9 +87,13 @@ public class HomeFragment extends Fragment {
 
         searchview_text = view.findViewById(R.id.textView3);
         card_searchview = view.findViewById(R.id.cardView2);
+        img_myLocation = view.findViewById(R.id.imageView7);
+        tv_mylocation = view.findViewById(R.id.textView);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = preferences.edit();
+        Home home = new Home();
+        tv_mylocation.setText(preferences.getString("city","My Location"));
 
         login_email = preferences.getString("email", "");
 
@@ -84,6 +102,13 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), SeeAll_GL.class);
                 startActivity(i);
+            }
+        });
+
+        img_myLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_mylocation.setText(preferences.getString("city","My Location"));
             }
         });
 
