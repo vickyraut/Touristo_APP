@@ -79,16 +79,20 @@ public class SeeAll_GL extends AppCompatActivity {
                     JSONArray jsonArray = response.getJSONArray("getTouristPlaces");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String id = jsonObject.getString("id");
                         String name = jsonObject.getString("name");
-                        String image = jsonObject.getString("image");
-                        String city = jsonObject.getString("city");
-                        String country = jsonObject.getString("country");
-                        String like_count = jsonObject.getString("likes");
-                        int price = jsonObject.getInt("price");
-                        data.add(new rec_for_you_model(id, name, image, city, country, like_count, price));
+                        String city  = jsonObject.getString("city");
+                        String country  = jsonObject.getString("country");
+                        String image  = jsonObject.getString("image");
+                        String description  = jsonObject.getString("description");
+                        String days  = jsonObject.getString("days");
+                        int price  = jsonObject.getInt("price");
+                        int likes = jsonObject.getInt("likes");
+                        double rating  = jsonObject.getDouble("rating");
+                        double latitude  = jsonObject.getDouble("latitude");
+                        double longitude  = jsonObject.getDouble("longitude");
+
+                        data.add(new rec_for_you_model(name,city,country,image, description,days,price,likes,rating,latitude,longitude));
                     }
 
                     seeAllAdapter = new seeAll_glAdapter(data, SeeAll_GL.this);

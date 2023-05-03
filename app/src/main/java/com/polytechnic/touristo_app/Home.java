@@ -68,6 +68,7 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    public static Toolbar toolbar;
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -82,7 +83,7 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
         preferences = PreferenceManager.getDefaultSharedPreferences(Home.this);
         editor = preferences.edit();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
@@ -132,7 +133,7 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
                         replace(new ExploreFragment());
                         break;
                     case 2:
-                        replace(new MapFragment());
+                        replace(new SavedFragment());
                         break;
                     case 3:
                         replace(new ProfileFragment());
@@ -186,8 +187,8 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
             ExploreFragment exploreFragment = new ExploreFragment();
             transaction.replace(R.id.container, exploreFragment);
         } else if (position == POS_EXPLORE) {
-            MapFragment mapFragment = new MapFragment();
-            transaction.replace(R.id.container, mapFragment);
+            SavedFragment savedFragment = new SavedFragment();
+            transaction.replace(R.id.container, savedFragment);
         } else if (position == POS_MY_PROFILE) {
             ProfileFragment profileFragment = new ProfileFragment();
             transaction.replace(R.id.container, profileFragment);

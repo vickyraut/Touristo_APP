@@ -1,25 +1,23 @@
 package com.polytechnic.touristo_app.models;
 
 public class rec_for_you_model {
-    String id, name, image,city, country, like_count;
-    int price;
+    String name, city, country, image, description, days;
+    int price,likes;
+    double rating;
+    double latitude, longitude;
 
-    public rec_for_you_model(String id, String name, String image, String city, String country, String like_count, int price) {
-        this.id = id;
+    public rec_for_you_model(String name, String city, String country, String image, String description, String days, int price, int likes, double rating, double latitude, double longitude) {
         this.name = name;
-        this.image = image;
         this.city = city;
         this.country = country;
-        this.like_count = like_count;
+        this.image = image;
+        this.description = description;
+        this.days = days;
         this.price = price;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.likes = likes;
+        this.rating = rating;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getName() {
@@ -28,14 +26,6 @@ public class rec_for_you_model {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getCity() {
@@ -54,12 +44,28 @@ public class rec_for_you_model {
         this.country = country;
     }
 
-    public String getLike_count() {
-        return like_count;
+    public String getImage() {
+        return image;
     }
 
-    public void setLike_count(String like_count) {
-        this.like_count = like_count;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
     }
 
     public int getPrice() {
@@ -68,5 +74,37 @@ public class rec_for_you_model {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

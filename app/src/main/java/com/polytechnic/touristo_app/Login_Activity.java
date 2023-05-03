@@ -158,7 +158,7 @@ public class Login_Activity extends AppCompatActivity {
                         Intent intent = new Intent(Login_Activity.this, Home.class);
                         startActivity(intent);
                         finish();
-                        editor.putString("email", email).commit();
+                        editor.putString("Useremail", email).commit();
                     } else {
                         loadingDialog.dismissDialog();
                         Toast.makeText(Login_Activity.this, "Invalid Data", Toast.LENGTH_SHORT).show();

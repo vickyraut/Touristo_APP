@@ -1,13 +1,8 @@
 package com.polytechnic.touristo_app;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -17,22 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -48,10 +37,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -68,6 +55,9 @@ public class HomeFragment extends Fragment {
     TextView tv_mylocation;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    List<TravelLoacation> travelLoacations = new ArrayList<>();
+    TravelLocationAdapter travelLocationAdapter;
+    ViewPager2 locationsViewPager;
 
 
     String login_email, Name;
@@ -93,9 +83,13 @@ public class HomeFragment extends Fragment {
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = preferences.edit();
         Home home = new Home();
-        tv_mylocation.setText(preferences.getString("city","My Location"));
+        tv_mylocation.setText(preferences.getString("city", "My Location"));
 
         login_email = preferences.getString("email", "");
+
+        Home.toolbar.setVisibility(View.VISIBLE);
+
+        getForYouPlaces();
 
         seeAllForyou.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +102,7 @@ public class HomeFragment extends Fragment {
         img_myLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_mylocation.setText(preferences.getString("city","My Location"));
+                tv_mylocation.setText(preferences.getString("city", "My Location"));
             }
         });
 
@@ -118,8 +112,9 @@ public class HomeFragment extends Fragment {
                 HomeFragment.super.onPause();
                 card_searchview.setVisibility(View.INVISIBLE);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.home_constraint,new SearchFragment());
+                transaction.replace(R.id.home_constraint, new SearchFragment());
                 transaction.commit();
+                Home.toolbar.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -138,32 +133,7 @@ public class HomeFragment extends Fragment {
         tourist_places_recyclerView.setLayoutManager(layoutManager1);
 
         //kinberns view .........
-        ViewPager2 locationsViewPager = view.findViewById(R.id.Vp_hotPlaces);
-
-        List<TravelLoacation> travelLoacations = new ArrayList<>();
-
-        TravelLoacation travelLocationiconEiffelTower = new TravelLoacation();
-        travelLocationiconEiffelTower.imageUrl = "https://images.unsplash.com/photo-1543349689-9a4d426bee8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1101&q=80";
-        travelLocationiconEiffelTower.title = "France";
-        travelLocationiconEiffelTower.location = "Eiffel tower";
-        travelLocationiconEiffelTower.starRating = 4.8f;
-        travelLoacations.add(travelLocationiconEiffelTower);
-
-
-        TravelLoacation travelLocationiconTaj = new TravelLoacation();
-        travelLocationiconTaj.imageUrl = "https://c4.wallpaperflare.com/wallpaper/419/140/867/closed-up-photo-of-pink-petaled-flower-wallpaper-preview.jpg";
-        travelLocationiconTaj.title = "India";
-        travelLocationiconTaj.location = "Taj Mahal";
-        travelLocationiconTaj.starRating = 4.8f;
-        travelLoacations.add(travelLocationiconTaj);
-
-        TravelLoacation travelLocationiconMaldives = new TravelLoacation();
-        travelLocationiconMaldives.imageUrl = "https://c4.wallpaperflare.com/wallpaper/773/987/659/maldives-dock-island-beach-wallpaper-preview.jpg";
-        travelLocationiconMaldives.title = "India";
-        travelLocationiconMaldives.location = "Maldives";
-        travelLocationiconMaldives.starRating = 4.8f;
-        travelLoacations.add(travelLocationiconMaldives);
-        locationsViewPager.setAdapter(new TravelLocationAdapter(travelLoacations));
+        locationsViewPager = view.findViewById(R.id.Vp_hotPlaces);
 
         locationsViewPager.setClipToPadding(false);
         locationsViewPager.setClipChildren(false);
@@ -183,8 +153,6 @@ public class HomeFragment extends Fragment {
         });
         locationsViewPager.setPageTransformer(compositePageTransformer);
 
-        getForYouPlaces();
-
 
         return view;
     }
@@ -198,6 +166,8 @@ public class HomeFragment extends Fragment {
         RequestParams params1 = new RequestParams();
         //Fetch User name
         RequestParams params2 = new RequestParams();
+        //Fetch Hot Places
+        RequestParams params3 = new RequestParams();
 
         params2.put("email", login_email);
 
@@ -209,16 +179,20 @@ public class HomeFragment extends Fragment {
                     JSONArray jsonArray = response.getJSONArray("getTouristPlaces");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String id = jsonObject.getString("id");
                         String name = jsonObject.getString("name");
-                        String image = jsonObject.getString("image");
                         String city = jsonObject.getString("city");
                         String country = jsonObject.getString("country");
-                        String like_count = jsonObject.getString("likes");
+                        String image = jsonObject.getString("image");
+                        String description = jsonObject.getString("description");
+                        String days = jsonObject.getString("days");
                         int price = jsonObject.getInt("price");
-                        for_you_models.add(new rec_for_you_model(id, name, image, city, country, like_count, price));
+                        int likes = jsonObject.getInt("likes");
+                        double rating = jsonObject.getDouble("rating");
+                        double latitude = jsonObject.getDouble("latitude");
+                        double longitude = jsonObject.getDouble("longitude");
+
+                        for_you_models.add(new rec_for_you_model(name, city, country, image, description, days, price, likes, rating, latitude, longitude));
                     }
 
                     rec_foryou_adapter = new rec_foryou_adapter(for_you_models, getContext());
@@ -247,10 +221,19 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String name = jsonObject.getString("name");
-                        String image = jsonObject.getString("image");
-                        int count = jsonObject.getInt("likes");
+                        String city  = jsonObject.getString("city");
+                        String country  = jsonObject.getString("country");
+                        String image  = jsonObject.getString("image");
+                        String description  = jsonObject.getString("description");
+                        String days  = jsonObject.getString("days");
+                        int price  = jsonObject.getInt("price");
+                        int likes = jsonObject.getInt("likes");
+                        double rating  = jsonObject.getDouble("rating");
+                        double latitude  = jsonObject.getDouble("latitude");
+                        double longitude  = jsonObject.getDouble("longitude");
+                        int liked_status = jsonObject.getInt("liked_status");
 
-                        touristPlaces_models.add(new home_touristPlaces_model(name, count, image));
+                        touristPlaces_models.add(new home_touristPlaces_model(name,city,country,image, description,days,price, likes, rating,latitude,longitude,liked_status));
                     }
 
 
@@ -288,7 +271,39 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
+        client.post(Urls.urlGetHotPlaces, params3, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("getHotPlaces");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String title = jsonObject.getString("title");
+                        String location = jsonObject.getString("location");
+                        String image = jsonObject.getString("image");
+                        double star_rating = jsonObject.getDouble("star_rating");
+
+                        travelLoacations.add(new TravelLoacation(title, location, image, star_rating));
+                    }
+
+                    travelLocationAdapter = new TravelLocationAdapter(travelLoacations);
+                    locationsViewPager.setAdapter(travelLocationAdapter);
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Toast.makeText(getContext(), "Server Error, Please try again later...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
-
-
 }

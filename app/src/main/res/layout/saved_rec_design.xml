@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="150dp"
+    android:layout_margin="10dp"
+    android:elevation="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp">
+
+    <ImageView
+
+        android:id="@+id/saved_place_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/taj1">
+
+    </ImageView>
+<TextView
+    android:id="@+id/saved_place_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:text="Taj mahal"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="bottom"
+    android:paddingLeft="15dp"
+    android:textColor="@color/white">
+</TextView>
+</androidx.cardview.widget.CardView>

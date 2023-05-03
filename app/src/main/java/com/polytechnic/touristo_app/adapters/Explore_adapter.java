@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.polytechnic.touristo_app.Constants.Urls;
 import com.polytechnic.touristo_app.R;
 import com.polytechnic.touristo_app.SelectedLocationActivity;
@@ -28,6 +30,7 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
 
     Context con;
     private List<Exp_Model> mList = new ArrayList<>();
+    int switchLiked;
 
     public Explore_adapter(List<Exp_Model> mList, Context con) {
         this.mList = mList;
@@ -68,15 +71,20 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
             public void onClick(View v) {
                 Intent intent = new Intent(con, SelectedLocationActivity.class);
                 intent.putExtra("name",temp.getName());
+                intent.putExtra("country",temp.getCountry());
+                intent.putExtra("city",temp.getCity());
                 intent.putExtra("image",temp.getImage());
                 intent.putExtra("price", temp.getPrice());
                 intent.putExtra("days",temp.getDays());
+                intent.putExtra("rating",(float)temp.getRating());
+                intent.putExtra("description",temp.getDescription());
                 intent.putExtra("latitude",temp.getLatitude());
                 intent.putExtra("longitude",temp.getLongitude());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 con.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -85,10 +93,11 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
     }
 
     public class ExpViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView, imageView2;
         TextView t, t2, t3,t4;
-
         CardView cardView;
+        LottieAnimationView liked;
+        RelativeLayout relativeLayout;
 
         public ExpViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +107,9 @@ public class Explore_adapter extends RecyclerView.Adapter<Explore_adapter.ExpVie
             t = itemView.findViewById(R.id.tv_location_name);
             t2 = itemView.findViewById(R.id.tv_Price);
             t3 = itemView.findViewById(R.id.tv_days);
+            liked = itemView.findViewById(R.id.explore_liked);
+            imageView2 = itemView.findViewById(R.id.img_liked);
+            relativeLayout = itemView.findViewById(R.id.exp_relative);
         }
     }
 }

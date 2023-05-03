@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentActivity">
+
+    <ImageView
+        android:id="@+id/btn_p_back"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:padding="10dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/back_button"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="15dp"
+        android:background="@drawable/back_button"
+        android:elevation="30dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_applogo"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/turisto_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_contact_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Traveller Details"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_applogo"
+                app:layout_constraintStart_toStartOf="@+id/iv_applogo"
+                app:layout_constraintTop_toBottomOf="@+id/iv_applogo">
+
+            </TextView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ap_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:elevation="30dp"
+
+                android:paddingBottom="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact_details">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_ap_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/iv_ap_placeimg"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/taj1">
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+
+                    android:id="@+id/tv_ap_place_name"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Ubud Tour - Best of Ubad- All inclusive"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/tv_ap_timetv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Time : "
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ap_place_name">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_ap_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="7:30 AM"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_ap_timetv"
+                    app:layout_constraintStart_toEndOf="@id/tv_ap_timetv"
+                    app:layout_constraintTop_toTopOf="@id/tv_ap_timetv">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/tv_acp_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Thursday, 20 April,2023"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ap_timetv">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_acp_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:text="2 Days"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_acp_date">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_acp_members"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:text="2 Adults"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_acp_days">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_your_package_refund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Non-refundable"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/cv_ap_img"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_acp_members">
+
+                </TextView>
+
+                <View
+                    android:id="@+id/view_v"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_ap_img"
+                    app:layout_constraintVertical_bias="0.16000003">
+
+                </View>
+
+                <TextView
+
+                    android:id="@+id/tv_p_booking_fees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="Booking Fee  :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_v">
+
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/tv_p_bookingfees_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:drawableLeft="@drawable/rupee"
+                    android:text="0.00"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_your_package_refund">
+
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/tv_p_subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Subtotal  :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_p_booking_fees">
+
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/tv_p_subtotal_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:drawableLeft="@drawable/rupee"
+                    android:text="15,979.04"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_p_subtotal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_p_subtotal">
+
+                </TextView>
+
+
+                <TextView
+
+                    android:id="@+id/tv_acp_booking_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Total  :"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_p_subtotal">
+
+                </TextView>
+
+                <TextView
+
+                    android:id="@+id/tv_acp_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:drawableLeft="@drawable/rupee"
+                    android:text="15,979.04"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_acp_booking_total"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_acp_booking_total">
+
+                </TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_ap_Pay"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/pay_button"
+                android:shadowColor="@color/black"
+                android:text="Pay"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/ap_constraint_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

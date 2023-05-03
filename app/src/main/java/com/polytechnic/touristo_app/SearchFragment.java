@@ -83,6 +83,7 @@ public class SearchFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, new HomeFragment());
                 transaction.commit();
+                Home.toolbar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -149,8 +150,9 @@ public class SearchFragment extends Fragment {
                         int rating  = jsonObject.getInt("rating");
                         double latitude  = jsonObject.getDouble("latitude");
                         double longitude  = jsonObject.getDouble("longitude");
+                        int liked_status = jsonObject.getInt("liked_status");
 
-                        exp_models.add(new Exp_Model(name,city,country,image, description,days,price,likes,rating,latitude,longitude));
+                        exp_models.add(new Exp_Model(name,city,country,image, description,days,price,rating,latitude,longitude,liked_status));
                     }
 
                 } catch (JSONException e) {

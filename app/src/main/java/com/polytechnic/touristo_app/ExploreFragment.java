@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-
 public class ExploreFragment extends Fragment {
 
     RecyclerView explore_topTours_recyclerView;
@@ -45,10 +44,9 @@ public class ExploreFragment extends Fragment {
 
         explore_topTours_recyclerView = view.findViewById(R.id.exp_recview);
         explore_topTours_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
         exp_models = new ArrayList<>();
-
         getTop_TouristPlaces();
+
         return view;
     }
 
@@ -72,12 +70,12 @@ public class ExploreFragment extends Fragment {
                         String description  = jsonObject.getString("description");
                         String days  = jsonObject.getString("days");
                         int price  = jsonObject.getInt("price");
-                        int likes  = jsonObject.getInt("likes");
-                        int rating  = jsonObject.getInt("rating");
+                        double rating  = jsonObject.getDouble("rating");
                         double latitude  = jsonObject.getDouble("latitude");
                         double longitude  = jsonObject.getDouble("longitude");
+                        int liked_status = jsonObject.getInt("liked_status");
 
-                        exp_models.add(new Exp_Model(name,city,country,image, description,days,price,likes,rating,latitude,longitude));
+                        exp_models.add(new Exp_Model(name,city,country,image, description,days,price,rating,latitude,longitude,liked_status));
                     }
 
                     explore_adapter = new Explore_adapter(exp_models, getContext());

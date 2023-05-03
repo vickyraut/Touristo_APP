@@ -2,10 +2,12 @@ package com.polytechnic.touristo_app.models;
 
 public class Exp_Model {
     String name, city, country, image, description, days;
-    int price, likes, rating;
+    int price;
+    double rating;
     double latitude, longitude;
+    int liked_status;
 
-    public Exp_Model(String name, String city, String country, String image, String description, String days, int price, int likes, int rating, double latitude, double longitude) {
+    public Exp_Model(String name, String city, String country, String image, String description, String days, int price, double rating, double latitude, double longitude, int liked_status) {
         this.name = name;
         this.city = city;
         this.country = country;
@@ -13,10 +15,10 @@ public class Exp_Model {
         this.description = description;
         this.days = days;
         this.price = price;
-        this.likes = likes;
         this.rating = rating;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.liked_status = liked_status;
     }
 
     public String getName() {
@@ -75,19 +77,11 @@ public class Exp_Model {
         this.price = price;
     }
 
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -105,5 +99,13 @@ public class Exp_Model {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public int isLiked_status() {
+        return liked_status;
+    }
+
+    public void setLiked_status(int liked_status) {
+        this.liked_status = liked_status;
     }
 }

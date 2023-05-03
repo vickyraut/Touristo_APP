@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = preferences.edit();
 
-        login_email = preferences.getString("email", "");
+        login_email = preferences.getString("Useremail", "");
 
         homg_tv_name = view.findViewById(R.id.homg_et_name);
         homg_tv_email = view.findViewById(R.id.homg_et_email);
@@ -170,6 +170,7 @@ public class ProfileFragment extends Fragment {
                         Name = firstname + " " + lastname;
 
                         editor.putString("id", id).commit();
+                        editor.putString("userFullName", Name);
 
                         homg_tv_name.setText(Name);
                         homg_tv_email.setText(Email);

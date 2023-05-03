@@ -1,6 +1,7 @@
 package com.polytechnic.touristo_app.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.polytechnic.touristo_app.Constants.Urls;
 import com.polytechnic.touristo_app.R;
+import com.polytechnic.touristo_app.SelectedLocationActivity;
 import com.polytechnic.touristo_app.models.home_touristPlaces_model;
 import com.squareup.picasso.Picasso;
 
@@ -34,7 +36,6 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
         this.con = con;
     }
 
-
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,16 +45,40 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-//        home_touristPlaces_model v = list.get(position);
+        final home_touristPlaces_model temp = list.get(position);
         home_touristPlaces_model v =list.get(position);
-        holder.t1.setText(v.getName());
-        String count = String.valueOf(v.getCount());
-        holder.t2.setText(count);
 
-        Picasso.get()
-                .load(Urls.TouristImageAddress + v.getImage())
-                .error(R.drawable.reg_bg)
-                .into(holder.i);
+        holder.t1.setText(v.getName());
+        holder.t2.setText(String.valueOf(v.getLikes()));
+
+        if (v.getImage().isEmpty()){
+            holder.i.setImageResource(R.drawable.reg_bg);
+        }else {
+            Picasso.get()
+                    .load(v.getImage())
+                    .error(R.drawable.reg_bg)
+                    .into(holder.i);
+        }
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(con, SelectedLocationActivity.class);
+                intent.putExtra("name",temp.getName());
+                intent.putExtra("country",temp.getCountry());
+                intent.putExtra("city",temp.getCity());
+                intent.putExtra("image",temp.getImage());
+                intent.putExtra("price", temp.getPrice());
+                intent.putExtra("days",temp.getDays());
+                intent.putExtra("rating",(float)temp.getRating());
+                intent.putExtra("description",temp.getDescription());
+                intent.putExtra("latitude",temp.getLatitude());
+                intent.putExtra("longitude",temp.getLongitude());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                con.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -63,7 +88,7 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
 
     public static class viewholder extends RecyclerView.ViewHolder {
         //calls freg
-        ImageView i,i2;
+        ImageView i;
         TextView t1,t2;
         CardView cardView;
 
@@ -77,7 +102,6 @@ public class home_tourist_adapter extends RecyclerView.Adapter<home_tourist_adap
             cardView = itemView.findViewById(R.id.home_touristo_cardView);
 
         }
-
 
     }
 }
