@@ -54,7 +54,6 @@ public class SeeAll_GL extends AppCompatActivity {
         LinearLayoutManager SeeAllManager = new LinearLayoutManager(SeeAll_GL.this,LinearLayoutManager.VERTICAL,false);
         Rv_gl.setLayoutManager(SeeAllManager);
 
-
         getForYouPlaces();
 
     }

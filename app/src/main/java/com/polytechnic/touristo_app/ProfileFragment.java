@@ -1,8 +1,11 @@
 package com.polytechnic.touristo_app;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +14,7 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +40,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     TextView homg_tv_name;
+    int SELECT_PICTURE = 200;
     TextView homg_tv_email;
     TextView homg_tv_update_Address;
     TextView homg_tv_update_noti;
@@ -45,7 +50,7 @@ public class ProfileFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     String login_email;
-
+    ImageView iv_change_prof;
     String id, Name, Email;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -69,6 +74,19 @@ public class ProfileFragment extends Fragment {
         home_tv_large_Email = view.findViewById(R.id.textView6);
         img_profile = view.findViewById(R.id.profimage);
 
+        iv_change_prof = view.findViewById(R.id.iv_change_prof);
+        iv_change_prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageChooser();
+            }
+        });
+
+
+
+
+
+
 
         String address = preferences.getString("address", "Address");
         homg_tv_update_Address.setText(address);
@@ -79,7 +97,7 @@ public class ProfileFragment extends Fragment {
         ConstraintLayout cl_paymentDetails = view.findViewById(R.id.cl_paymentDetails);
 
         TextView tv_edit = view.findViewById(R.id.tv_edit);
-        ImageView upload_img = view.findViewById(R.id.imageView13);
+        ImageView upload_img = view.findViewById(R.id.iv_change_prof);
         CardView cv_your_details = view.findViewById(R.id.Cv_yourdetails);
 
         getMydetails();
@@ -146,6 +164,35 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    private void imageChooser() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == SELECT_PICTURE) {
+                // Get the url of the image from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    // update the preview image in the layout
+                    img_profile.setImageURI(selectedImageUri);
+                }
+            }
+        }
+    }
+
     private void getMydetails() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -167,7 +214,7 @@ public class ProfileFragment extends Fragment {
                         String image_name = jsonObject.getString("myimage");
                         Email = jsonObject.getString("email");
 
-                        Name = firstname + " " + lastname;
+                        Name = firstname;
 
                         editor.putString("id", id).commit();
                         editor.putString("userFullName", Name);
@@ -176,6 +223,7 @@ public class ProfileFragment extends Fragment {
                         homg_tv_email.setText(Email);
                         home_tv_large_Name.setText(Name);
                         home_tv_large_Email.setText(Email);
+                        homg_tv_update_payment.setText(lastname);
 
                         Picasso.get()
                                 .load(Urls.UserImageAddress + image_name)

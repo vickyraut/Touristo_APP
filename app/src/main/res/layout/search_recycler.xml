@@ -26,7 +26,8 @@
             android:id="@+id/search_locationName"
             android:text="location_name"
             android:textSize="20dp"
-            android:fontFamily="@font/alike_angular"
+            android:fontFamily="@font/nunito"
+
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="start|center_vertical"

@@ -29,6 +29,7 @@ import com.polytechnic.touristo_app.Constants.Urls;
 import com.polytechnic.touristo_app.adapters.TravelLocationAdapter;
 import com.polytechnic.touristo_app.adapters.home_tourist_adapter;
 import com.polytechnic.touristo_app.adapters.rec_foryou_adapter;
+import com.polytechnic.touristo_app.adapters.seeAll_glAdapter;
 import com.polytechnic.touristo_app.models.TravelLoacation;
 import com.polytechnic.touristo_app.models.home_touristPlaces_model;
 import com.polytechnic.touristo_app.models.rec_for_you_model;
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
     ViewPager2 locationsViewPager;
 
 
-    String login_email, Name;
+    String login_email;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -131,6 +132,7 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         tourist_places_recyclerView.setLayoutManager(layoutManager1);
+        tourist_places_recyclerView.setNestedScrollingEnabled(false);
 
         //kinberns view .........
         locationsViewPager = view.findViewById(R.id.Vp_hotPlaces);
@@ -152,7 +154,6 @@ public class HomeFragment extends Fragment {
             }
         });
         locationsViewPager.setPageTransformer(compositePageTransformer);
-
 
         return view;
     }
@@ -232,8 +233,9 @@ public class HomeFragment extends Fragment {
                         double latitude  = jsonObject.getDouble("latitude");
                         double longitude  = jsonObject.getDouble("longitude");
                         int liked_status = jsonObject.getInt("liked_status");
+                        int id = jsonObject.getInt("id");
 
-                        touristPlaces_models.add(new home_touristPlaces_model(name,city,country,image, description,days,price, likes, rating,latitude,longitude,liked_status));
+                        touristPlaces_models.add(new home_touristPlaces_model(name,city,country,image, description,days,price, likes, id,rating,latitude,longitude,liked_status));
                     }
 
 
@@ -289,7 +291,7 @@ public class HomeFragment extends Fragment {
                         travelLoacations.add(new TravelLoacation(title, location, image, star_rating));
                     }
 
-                    travelLocationAdapter = new TravelLocationAdapter(travelLoacations);
+                    travelLocationAdapter = new TravelLocationAdapter(travelLoacations, getContext());
                     locationsViewPager.setAdapter(travelLocationAdapter);
 
                 } catch (JSONException e) {

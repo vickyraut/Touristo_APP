@@ -2,18 +2,19 @@ package com.polytechnic.touristo_app.models;
 
 public class home_touristPlaces_model {
     String name, city, country, image, description, days;
-    int price, likes;
+    int id, price, likes;
     double rating;
     double latitude, longitude;
     int liked_status;
 
-    public home_touristPlaces_model(String name, String city, String country, String image, String description, String days, int price, int likes, double rating, double latitude, double longitude, int liked_status) {
+    public home_touristPlaces_model(String name, String city, String country, String image, String description, String days, int id, int price, int likes, double rating, double latitude, double longitude, int liked_status) {
         this.name = name;
         this.city = city;
         this.country = country;
         this.image = image;
         this.description = description;
         this.days = days;
+        this.id = id;
         this.price = price;
         this.likes = likes;
         this.rating = rating;
@@ -68,6 +69,14 @@ public class home_touristPlaces_model {
 
     public void setDays(String days) {
         this.days = days;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPrice() {

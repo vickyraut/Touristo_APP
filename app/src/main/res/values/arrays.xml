@@ -6,9 +6,9 @@
         <item></item>
         <item>Home</item>
         <item>Trending</item>
-        <item>Explore</item>
+        <item>Saved</item>
         <item>Profile</item>
-        <item>Settings</item>
+        <item>My tours</item>
         <item>About Us</item>
         <item/>
         <item>Log Out</item>
@@ -17,15 +17,15 @@
 
     <array name="id_activityScreenIcons">
 
-        <item>@drawable/round_close_24</item>
-        <item>@drawable/dashboard_24</item>
-        <item>@drawable/leaderboard_24</item>
-        <item>@drawable/baseline_map_24</item>
-        <item>@drawable/profile_24</item>
-        <item>@drawable/round_settings_24</item>
-        <item>@drawable/ic_round_email_24</item>
+        <item>@drawable/crossnew</item>
+        <item>@drawable/home2</item>
+        <item>@drawable/trendnew</item>
+        <item>@drawable/savenewlogopng</item>
+        <item>@drawable/user_profile</item>
+        <item>@drawable/shoppingcart</item>
+        <item>@drawable/aboutus</item>
         <item>0</item>
-        <item>@drawable/round_login_24</item>
+        <item>@drawable/logoutnew</item>
 
     </array>
 

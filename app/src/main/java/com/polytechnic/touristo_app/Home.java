@@ -3,6 +3,8 @@ package com.polytechnic.touristo_app;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -46,29 +49,28 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelectedListener {
 
+    public final static int REQUEST_CODE = 100;
     private static final int POS_CLOSE = 0;
     private static final int POS_Home = 1;
     private static final int POS_TRENDING = 2;
     private static final int POS_EXPLORE = 3;
     private static final int POS_MY_PROFILE = 4;
-    private static final int POS_SETTINGS = 5;
+    private static final int POS_MyPackages = 5;
     private static final int POS_ABOUT_US = 6;
     private static final int POS_LOGOUT = 8;
+    public static Toolbar toolbar;
     boolean doubletap;
     SearchFragment searchFragment;
     SlidingRootNav slidingRootNav;
-    private SmoothBottomBar smoothBottomBar;
-    private String[] screenTitles;
-    private Drawable[] screenIcons;
     FusedLocationProviderClient fusedLocationProviderClient;
     double latitude, longitude;
     String address;
     String city;
-    public final static int REQUEST_CODE = 100;
-
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    public static Toolbar toolbar;
+    private SmoothBottomBar smoothBottomBar;
+    private String[] screenTitles;
+    private Drawable[] screenIcons;
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -107,7 +109,7 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
                 createItemFor(POS_TRENDING),
                 createItemFor(POS_EXPLORE),
                 createItemFor(POS_MY_PROFILE),
-                createItemFor(POS_SETTINGS),
+                createItemFor(POS_MyPackages),
                 createItemFor(POS_ABOUT_US),
                 new SpaceItem(260),
                 createItemFor(POS_LOGOUT)
@@ -147,8 +149,8 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
     public DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(R.color.teal_200)
-                .withTextTint(R.color.black)
+                .withIconTint(R.color.myPcolor)
+                .withTextTint(R.color.blue)
                 .withSelectedIconTint(R.color.teal_200)
                 .withSelectedTextTint(R.color.teal_200);
     }
@@ -192,19 +194,42 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
         } else if (position == POS_MY_PROFILE) {
             ProfileFragment profileFragment = new ProfileFragment();
             transaction.replace(R.id.container, profileFragment);
-        } else if (position == POS_SETTINGS) {
-            SettingsFragment settingsFragment = new SettingsFragment();
-            transaction.replace(R.id.container, settingsFragment);
+        } else if (position == POS_MyPackages) {
+            Your_packageFragment your_packageFragment = new Your_packageFragment();
+            transaction.replace(R.id.container, your_packageFragment);
         } else if (position == POS_ABOUT_US) {
             AboutUsFragment aboutUsFragment = new AboutUsFragment();
             transaction.replace(R.id.container, aboutUsFragment);
         } else if (position == POS_LOGOUT) {
-            finish();
+            logout();
         }
 
         slidingRootNav.closeMenu();
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void logout() {
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle("Logout");
+        ad.setMessage("Do you really want to Logout?");
+        ad.setIcon(R.drawable.baseline_power_settings_new_24);
+        ad.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        ad.setNegativeButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Home.this, Welcome_Activity.class);
+                editor.putBoolean("Login", false).commit();
+                startActivity(intent);
+                finish();
+            }
+        }).create().show();
     }
 
     private void replace(Fragment fragment) {
@@ -247,40 +272,36 @@ public class Home extends AppCompatActivity implements DrawerAdapter.OnItemSelec
 
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            if (location != null) {
-                                latitude = location.getLatitude();
-                                longitude = location.getLongitude();
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
 
+                        Geocoder geocoder = new Geocoder(Home.this, Locale.getDefault());
+                        List<Address> addressList = null;
 
-                                Executor executor = Executors.newSingleThreadExecutor();
-
-                                        Geocoder geocoder = new Geocoder(Home.this, Locale.getDefault());
-                                        List<Address> addressList = null;
-
-                                try {
-                                    addressList = geocoder.getFromLocation(latitude, longitude, 1);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-
-
-                                address = addressList.get(0).getAddressLine(0) + " " + addressList.get(0).getLocality() + " " +
-                                                addressList.get(0).getCountryName();
-
-                                        city = addressList.get(0).getLocality();
-
-
-
-                                // save Important data to sharedpreference
-                                editor.putFloat("latitude", (float) latitude).apply();
-                                editor.putString("city", city).apply();
-                                editor.putFloat("longitude", (float) longitude).apply();
-                                editor.putString("address",address).apply();
-                            }
+                        try {
+                            addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
-                    });
+
+
+                        address = addressList.get(0).getAddressLine(0) + " " + addressList.get(0).getLocality() + " " +
+                                addressList.get(0).getCountryName();
+
+                        city = addressList.get(0).getLocality();
+
+
+                        // save Important data to sharedpreference
+                        editor.putFloat("latitude", (float) latitude).apply();
+                        editor.putString("city", city).apply();
+                        editor.putFloat("longitude", (float) longitude).apply();
+                        editor.putString("address", address).apply();
+                    }
+                }
+            });
         } else {
             askpermission();
         }

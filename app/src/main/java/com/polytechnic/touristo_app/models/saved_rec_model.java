@@ -1,27 +1,121 @@
 package com.polytechnic.touristo_app.models;
 
 public class saved_rec_model {
-    int place_img;
-    String place_name;
+    String name, city, country, image, description, days;
+    int price;
+    int id;
+    double rating;
+    double latitude, longitude;
+    int liked_status;
 
-    public saved_rec_model(int place_img, String place_name) {
-        this.place_img = place_img;
-        this.place_name = place_name;
+    public saved_rec_model(String name, String city, String country, String image, String description, String days, int price, int id, double rating, double latitude, double longitude, int liked_status) {
+        this.name = name;
+        this.city = city;
+        this.country = country;
+        this.image = image;
+        this.description = description;
+        this.days = days;
+        this.price = price;
+        this.id = id;
+        this.rating = rating;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.liked_status = liked_status;
     }
 
-    public int getPlace_img() {
-        return place_img;
+    public String getName() {
+        return name;
     }
 
-    public void setPlace_img(int place_img) {
-        this.place_img = place_img;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPlace_name() {
-        return place_name;
+    public String getCity() {
+        return city;
     }
 
-    public void setPlace_name(String place_name) {
-        this.place_name = place_name;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public int getLiked_status() {
+        return liked_status;
+    }
+
+    public void setLiked_status(int liked_status) {
+        this.liked_status = liked_status;
     }
 }

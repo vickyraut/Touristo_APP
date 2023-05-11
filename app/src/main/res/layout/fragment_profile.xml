@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_gred"
+    android:background="@color/myPcolor"
     tools:context=".ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,35 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="24dp"
-            android:padding="6dp"
-            app:cardCornerRadius="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#86CAC4C4"
-                android:gravity="center"
-                android:paddingLeft="4dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_back"
-                    app:tint="#8237c5" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
@@ -65,24 +36,37 @@
                 android:id="@+id/profimage"
                 android:layout_width="152dp"
                 android:layout_height="152dp"
-                android:src="@drawable/default_profile"
+                android:src="@drawable/img"
                 android:tint="@color/white"
-                app:civ_border_color="@color/black"
+                app:civ_border_color="@color/white"
                 app:civ_border_width="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/account" />
+                 />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_gal_pic_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="10dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+                <ImageView
+                    android:id="@+id/iv_change_prof"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:padding="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/cameranew" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -90,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -102,7 +85,6 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,9 +113,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/poppins"
+
+            android:fontFamily="@font/heebo_medium"
             android:text="PROFILE"
             android:textColor="#000000"
             android:textSize="20dp"
@@ -145,24 +127,21 @@
             android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/poppins"
+            android:layout_marginEnd="24dp"
+            android:drawableLeft="@drawable/pencilnew"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/heebo_medium"
             android:text="EDIT"
             android:textColor="#3B3B3B"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:drawableStart="@drawable/ic_round_edit_24"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +149,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:padding="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
@@ -207,16 +188,17 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#FBC02D"
+                                android:background="#FF5722"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:padding="4dp"
-                                    android:src="@drawable/ic_person"
-                                    android:tint="#FFFFFF" />
+                                  android:padding="10dp"
+                                    android:tint="@color/white"
+                                    android:src="@drawable/user_profile"
+                                  />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -225,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Your details"
                             android:textSize="16dp"
                             android:textStyle="bold"
@@ -237,9 +219,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="change your name,email,password"
                             android:textSize="14dp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/cv_ic_your_details"
                             app:layout_constraintTop_toBottomOf="@+id/tv_y_details"
                             tools:ignore="TextSizeCheck" />
@@ -257,7 +240,8 @@
                             android:gravity="start"
                             android:hint="Name"
                             android:padding="10dp"
-
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:textColorHint="#706D6D"
                             android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -273,7 +257,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:gravity="start"
                             android:hint="Change Email"
 
@@ -294,7 +279,8 @@
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
                             android:layout_marginBottom="20dp"
-
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:gravity="start"
                             android:hint="Change password"
                             android:padding="10dp"
@@ -352,8 +338,9 @@
                                     android:layout_height="40dp"
                                     android:layout_gravity="center"
                                     android:padding="4dp"
-                                    android:src="@drawable/home2"
-                                    android:tint="#FFFFFF" />
+                                    android:tint="@color/white"
+                                    android:src="@drawable/icon_loc_pin"
+                                    />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -362,7 +349,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Manage address"
                             android:textSize="16dp"
                             android:textStyle="bold"
@@ -371,12 +358,14 @@
 
                         <TextView
                             android:id="@+id/tv_u_address"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Update your addresses"
                             android:textSize="14dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/cv_ic_add"
                             app:layout_constraintTop_toBottomOf="@+id/tv_M_address"
                             tools:ignore="TextSizeCheck" />
@@ -392,6 +381,8 @@
                             android:layout_marginRight="24dp"
                             android:gravity="start"
                             android:hint="Change Address"
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:inputType="textEmailAddress"
                             android:padding="10dp"
                             android:textColorHint="#706D6D"
@@ -443,11 +434,11 @@
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:padding="4dp"
-                                    android:src="@drawable/ic_notifications"
+                                    android:src="@drawable/notificationnew"
                                     android:tint="#FFFFFF" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -457,7 +448,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Notification Settings"
                             android:textSize="16dp"
                             android:textStyle="bold"
@@ -469,9 +460,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Update your notification preferences "
                             android:textSize="14dp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/cv_ic_notify"
                             app:layout_constraintTop_toBottomOf="@+id/tv_notify"
                             tools:ignore="TextSizeCheck" />
@@ -486,7 +478,8 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:gravity="start"
                             android:hint="Change notification preference"
                             android:inputType="textEmailAddress"
@@ -506,8 +499,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/heebo_medium"
                     android:text="Payment"
                     android:textColor="#000000"
                     android:textSize="20dp"
@@ -552,16 +545,16 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#54AC07"
+                                android:background="#FF9800"
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:padding="4dp"
-                                    android:src="@drawable/home2"
-                                    android:tint="#FFFFFF" />
+                                    android:tint="@color/white"
+                                    android:src="@drawable/paymentnew" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -570,7 +563,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Payment Details"
                             android:textSize="16dp"
                             android:textStyle="bold"
@@ -582,10 +575,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:fontFamily="@font/poppins"
+                            android:fontFamily="@font/nunito"
                             android:text="Update your payment prefrencess"
                             android:textSize="14dp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/cv_ic_payment"
                             app:layout_constraintTop_toBottomOf="@+id/tv_p_details"
                             tools:ignore="TextSizeCheck" />
@@ -599,7 +592,8 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-
+                            android:fontFamily="@font/nunito"
+                            android:textStyle="normal"
                             android:gravity="start"
                             android:hint="Add upi id"
                             android:inputType="textEmailAddress"

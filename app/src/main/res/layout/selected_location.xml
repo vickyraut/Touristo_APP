@@ -26,7 +26,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.65">
+    app:layout_constraintGuide_percent="0.70">
 </androidx.constraintlayout.widget.Guideline>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/loc_name_layout"
@@ -44,26 +44,23 @@
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:text="Tanin-lahtinen"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/heebo_medium"
+                    android:textStyle="bold"                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="24dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="@+id/textView8"
                     app:layout_constraintTop_toBottomOf="@+id/textView8"
-                    app:srcCompat="@drawable/icon_loc_pin"
+                    app:srcCompat="@drawable/locationmarker"
                     app:tint="#FFFFFF" />
 
                 <TextView
@@ -75,6 +72,8 @@
                     android:text="Norwey"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
+                    android:fontFamily="@font/nunito"
+                    android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView10"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
                     app:layout_constraintTop_toTopOf="@+id/imageView10" />
@@ -156,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/heebo_medium"
                         android:text="630KM"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -168,7 +167,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/nunito"
                         android:text="Distance"
                         android:textSize="16dp"
                         app:layout_constraintBottom_toBottomOf="@+id/cardView100"
@@ -209,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/heebo_medium"
                         android:text="4.9"
                         android:textColor="@color/black"
                         android:textSize="24sp"
@@ -223,7 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/nunito"
                         android:text="Ratings"
                         android:textSize="16dp"
                         app:layout_constraintBottom_toBottomOf="@+id/cardView11"
@@ -235,6 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
+                        android:fontFamily="@font/nunito"
                         android:text="Price:"
                         android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="@+id/cardView100"
@@ -245,14 +245,16 @@
 
                     <TextView
                         android:id="@+id/tv_visit"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
+                        android:fontFamily="@font/heebo_medium"
                         android:text="Free"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/visit_lable"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline6"
                         app:layout_constraintStart_toEndOf="@+id/visit_lable"
                         app:layout_constraintTop_toTopOf="@+id/visit_lable">
 
@@ -263,6 +265,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
+                        android:fontFamily="@font/nunito"
                         android:text="Duration:"
                         android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="@+id/cardView11"
@@ -273,14 +276,16 @@
 
                     <TextView
                         android:id="@+id/tv_open"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/heebo_medium"
                         android:text="24/7"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/lable_open"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/lable_open"
                         app:layout_constraintTop_toTopOf="@+id/lable_open">
 
@@ -294,8 +299,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/heebo_medium"
                     android:text="Description"
                     android:textColor="@color/black"
                     android:textSize="24dp"
@@ -321,6 +326,8 @@
                         android:paddingTop="15dp"
                         android:paddingRight="30dp"
                         android:paddingBottom="5dp"
+                        android:fontFamily="@font/nunito"
+                        android:textStyle="normal"
                         android:text="Norway is a Scandinavian country encompassing mountains, glaciers and deep coastal fjords. Oslo, the capital, is a city of green spaces and museums. Preserved 9th-century Viking ships are displayed at Oslo’s Viking Ship Museum. Bergen, with colorful wooden houses, is the starting point for cruises to the dramatic Sognefjord. Norway is also known for fishing, hiking and skiing, notably at Lillehammer’s Olympic resort."
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -356,6 +363,8 @@
             android:textColor="@color/white"
             app:icon="@drawable/send"
             app:iconGravity="textStart"
+            android:fontFamily="@font/heebo_medium"
+            android:textStyle="bold"
             app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

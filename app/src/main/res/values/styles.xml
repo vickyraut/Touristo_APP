@@ -2,6 +2,7 @@
     <style name="Widget.Theme.Touristo_App.ButtonBar.Fullscreen" parent="">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="fontFamily">@font/inter</item>
     </style>
 
     <!--    Creating style Map bottom sheet animation-->

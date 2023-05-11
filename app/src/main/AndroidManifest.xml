@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:name=".MyApplication">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- To get location from Network Provider -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
@@ -14,14 +22,16 @@
         android:configChanges="keyboardHidden|orientation"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Touristo_App"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".InsideHotPlaces"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -35,16 +45,20 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyAb_O7-WRNJAsB4BuVrMniZP-3ffoDtD-Q" />
 
         <activity
             android:name=".payment_details_Activity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
+            android:name=".activity_hot"
+            android:exported="false" />
         <activity
             android:name=".PaymentActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".MapsActivity"
             android:exported="false"
@@ -85,7 +99,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Home"
+            android:name=".Welcome_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -94,7 +108,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Welcome_Activity"
+            android:name=".splashActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -23,12 +25,21 @@ public class Welcome_Activity extends AppCompatActivity {
     AppCompatButton btn_start;
     String path;
     boolean doubletap;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_welcome);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
+
+        if (preferences.getBoolean("Login",false)){
+            startActivity(new Intent(Welcome_Activity.this,splashActivity.class));
+            finish();
+        }
 
         vv_background = findViewById(R.id.welcome_vid_background);
         btn_start = findViewById(R.id.wecome_start);

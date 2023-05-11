@@ -18,6 +18,8 @@ import com.polytechnic.touristo_app.R;
 import com.polytechnic.touristo_app.models.saved_rec_model;
 import com.polytechnic.touristo_app.models.story_model;
 import com.polytechnic.touristo_app.models.value_set_get;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +47,8 @@ public class story_adapter extends RecyclerView.Adapter<story_adapter.viewholder
 
         @Override
         public void onBindViewHolder(@NonNull viewholder holder, int position) {
-
-
             story_model s = list.get(position);
-            holder.i.setImageResource(s.getCircle_iv());
-
-
-
-
-
+            Picasso.get().load(s.getImage()).error(R.drawable.reg_bg).into(holder.i);
 
         }
 

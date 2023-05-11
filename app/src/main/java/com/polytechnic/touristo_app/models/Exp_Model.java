@@ -3,11 +3,12 @@ package com.polytechnic.touristo_app.models;
 public class Exp_Model {
     String name, city, country, image, description, days;
     int price;
+    int id;
     double rating;
     double latitude, longitude;
     int liked_status;
 
-    public Exp_Model(String name, String city, String country, String image, String description, String days, int price, double rating, double latitude, double longitude, int liked_status) {
+    public Exp_Model(String name, String city, String country, String image, String description, String days, int price, int id, double rating, double latitude, double longitude, int liked_status) {
         this.name = name;
         this.city = city;
         this.country = country;
@@ -15,6 +16,7 @@ public class Exp_Model {
         this.description = description;
         this.days = days;
         this.price = price;
+        this.id = id;
         this.rating = rating;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -75,6 +77,14 @@ public class Exp_Model {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getRating() {

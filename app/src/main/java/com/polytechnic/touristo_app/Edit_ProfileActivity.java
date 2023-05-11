@@ -3,6 +3,8 @@ package com.polytechnic.touristo_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,15 +23,18 @@ import cz.msebera.android.httpclient.Header;
 
 public class Edit_ProfileActivity extends AppCompatActivity {
 
-    EditText et_firstname, et_lastname, et_email, et_password, et_Address;
+    EditText et_firstname, et_Upi, et_email, et_password, et_Address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_edit_profile);
 
         et_firstname = findViewById(R.id.edt_et_first);
-        et_lastname = findViewById(R.id.edt_et_last);
+        et_Upi = findViewById(R.id.edt_et_upi);
         et_email = findViewById(R.id.edt_et_email);
         et_password = findViewById(R.id.edt_et_pass);
         et_Address = findViewById(R.id.edt_et_Address);
@@ -44,9 +49,9 @@ public class Edit_ProfileActivity extends AppCompatActivity {
                 } else if (!et_email.getText().toString().contains("@") || !et_email.getText().toString().contains(".com")) {
                     et_email.setError("Please Enter valid Email Address");
                 } else if (et_firstname.getText().toString().isEmpty()) {
-                    et_firstname.setError("Please Enter Your firstname");
-                } else if (et_lastname.getText().toString().isEmpty()) {
-                    et_lastname.setError("Please Enter Your lastname");
+                    et_firstname.setError("Please Enter Your fullname");
+                } else if (et_Upi.getText().toString().isEmpty()) {
+                    et_Upi.setError("Please Enter Your UPI id");
                 } else if (et_password.getText().toString().isEmpty()) {
                     et_password.setError("Please Enter Your Password");
                 } else if (et_password.getText().toString().length() < 8) {
@@ -65,7 +70,7 @@ public class Edit_ProfileActivity extends AppCompatActivity {
 
         params.put("email", et_email.getText().toString());
         params.put("firstname", et_firstname.getText().toString());
-        params.put("lastname", et_lastname.getText().toString());
+        params.put("lastname", et_Upi.getText().toString());
         params.put("password", et_password.getText().toString());
 
         client.post(Urls.urlRegisterUser, params, new JsonHttpResponseHandler() {

@@ -24,7 +24,7 @@
         android:id="@+id/toolbar"
         android:background="@drawable/toolbar_bg"
         android:layout_margin="10dp"
-        app:titleTextColor="@color/teal_200"
+        app:titleTextColor="@color/myPcolor"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -33,12 +33,12 @@
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:backgroundColor="#3E09BD"
+        app:backgroundColor="@color/myPcolor"
         app:cornerRadius="15dp"
+        app:itemFontFamily="@font/nunito"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container"
         app:menu="@menu/navmenu"
         tools:ignore="MissingConstraints" />
 

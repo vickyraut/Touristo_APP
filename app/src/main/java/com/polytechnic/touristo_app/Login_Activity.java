@@ -141,7 +141,7 @@ public class Login_Activity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        params.put("email", password);
+        params.put("email", email);
         params.put("password", password);
 
         client.post(Urls.urlLoginUser, params, new JsonHttpResponseHandler() {
@@ -155,6 +155,7 @@ public class Login_Activity extends AppCompatActivity {
                     if (issuccess.equals("1")) {
                         loadingDialog.dismissDialog();
                         Toast.makeText(Login_Activity.this, "Login Successfully Done", Toast.LENGTH_SHORT).show();
+                        editor.putBoolean("Login",true).commit();
                         Intent intent = new Intent(Login_Activity.this, Home.class);
                         startActivity(intent);
                         finish();

@@ -52,6 +52,8 @@
                 android:id="@+id/tv_hotel_name"
                 android:layout_width="180dp"
                 android:layout_height="50dp"
+                android:fontFamily="@font/nunito"
+                android:textStyle="bold"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
@@ -65,32 +67,45 @@
 
             </TextView>
 
-            <ImageView
-                android:id="@+id/iv_heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="5dp"
-                android:scaleType="centerCrop"
+            <RelativeLayout
+                android:id="@+id/htr_relative"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_shape"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_hotel_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/heart" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/img_liked2"
+                    android:src="@drawable/heart"
+                    android:padding="7dp"
+                    android:layout_centerInParent="true" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/explore_liked2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:lottie_rawRes="@raw/liked" />
+            </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/tv_likesCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
                 android:text="2673K"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_heart"/>
+                app:layout_constraintTop_toBottomOf="@+id/iv_heart" />
 
 
 

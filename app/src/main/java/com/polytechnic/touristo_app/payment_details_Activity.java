@@ -66,8 +66,8 @@ public class payment_details_Activity extends AppCompatActivity {
 
         et_email.setText(email);
         et_fullName.setText(fullName);
-        tv_time.setText("");
-        tv_date.setText("");
+        tv_time.setText(" ");
+        tv_date.setText(" ");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arr);
         act_members.setAdapter(arrayAdapter);
@@ -237,21 +237,4 @@ public class payment_details_Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putString("Booking_Phone", et_phone.getText().toString());
-        outState.putString("Booking_time", tv_time.toString());
-        outState.putString("Booking_date", tv_date.toString());
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        et_phone.setText(savedInstanceState.getString("Booking_Phone"));
-        tv_time.setText(savedInstanceState.getString("Booking_time"));
-        tv_date.setText(savedInstanceState.getString("Booking_date"));
-    }
 }
