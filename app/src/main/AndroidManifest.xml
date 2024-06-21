@@ -45,7 +45,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAb_O7-WRNJAsB4BuVrMniZP-3ffoDtD-Q" />
+            android:value="YOUR_API_KEY" />
 
         <activity
             android:name=".payment_details_Activity"
